@@ -1,39 +1,48 @@
 <!--The content below is only a placeholder and can be replaced.-->
-
+<table bgcolor ="#ff6600" border = 1>
 <div style="text-align:center">
   <h1>
-    {{ title }}
+	{{ title }}
   </h1>
 </div>
 
 
-<h2><h2><h2></h2></h2></h2>
 <form class='classform1' #f='ngForm'>
 
-<label>Consumicion:</label>
-<select name='lstColor2' [(ngModel)]='cod_color'>
-	<option *ngFor='let color of colores'>{{color[0]}}</option>
+<label>Consumición:</label>
+<select style="width: 250px" name='lstColor' [(ngModel)]='cadena'>
+	<option *ngFor='let color of colores' >{{color[0]}} ({{color[1]}}€)</option>
+	<!-- si se cambia el formato de esto se carga todo (no poner espacio entre numero y euro) -->
+
 </select>
-<button type='button' (click)='addLinea(cod_color)'>+</button>
+	<button type='button' (click)='addLinea()'>+</button>
+<br/>
+
 </form>
 
 <br/>
-<h2>Consumiciones:</h2>
-<table style="width:50%">
-  <tr>
-    <td><u>Producto</u></td>
-    <td><u>Precio</u></td>
-  </tr>
-  <p *ngFor='let linea of lineas; let i=index'>
-  {{linea}}
-  <button type='button' (click)='delLinea(i)'>-</button>
+<br/>
+<h2>
+	<strong>Consumiciones:</strong>
+</h2>
+
+<br/>
+<table class="table">
+	<tr>
+		<th><u>Producto</u></th>
+		<th><u>Precio</u></th>
+	</tr>
+</table>
+
+<p *ngFor='let linea of lineas; let i=index'>
+    
+	{{linea}} <button type='button' (click)='delLinea(i)'>-</button>
+</p>
+
+<p>
+<strong>
+TOTAL: {{total}}€
+</strong>
 </p>
 </table>
-<br/>
-	
-
-
-
-
-
 
