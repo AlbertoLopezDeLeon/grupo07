@@ -23,7 +23,7 @@ export class AppComponent {
   
   public total:number = 0;
   
-   public addLinea()
+  public addLinea()
   {
 	  //this.lineas.push('Linea de ejemplo '+(this.lineas.length+1));
 
