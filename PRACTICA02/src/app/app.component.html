@@ -1,48 +1,47 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<table bgcolor ="#ff6600" border = 1>
+<table bgcolor =#F5BCA9 border = 0>
 <div style="text-align:center">
   <h1>
 	{{ title }}
   </h1>
 </div>
 
-
-<form class='classform1' #f='ngForm'>
-
-<label>Consumición:</label>
-<select style="width: 250px" name='lstColor' [(ngModel)]='cadena'>
-	<option *ngFor='let color of colores' >{{color[0]}} ({{color[1]}}€)</option>
-	<!-- si se cambia el formato de esto se carga todo (no poner espacio entre numero y euro) -->
-
-</select>
-	<button type='button' (click)='addLinea()'>+</button>
-<br/>
-
-</form>
-
-<br/>
-<br/>
-<h2>
-	<strong>Consumiciones:</strong>
-</h2>
-
-<br/>
-<table class="table">
+<table id="tablaVehiculos">
 	<tr>
-		<th><u>Producto</u></th>
-		<th><u>Precio</u></th>
+		<th>FOTO</th>
+		<th>MARCA</th>
+		<th>MODELO</th>
+		<th>AÑO</th>
+		<th>FECHA DE VENTA</th>
+		<th>PRECIO</th>
+		<th>PVP</th>
+		<th></th>
 	</tr>
+
+<tr *ngFor='let vehiculo of vehiculosFiltro; let i=index'>
+    <th> <img src={{vehiculo.foto}} height="80" width="160"/></th>
+	<th>{{ vehiculo.marca | uppercase }}</th>
+	<th>{{ vehiculo.modelo | lowercase }}</th>
+	<th>{{ vehiculo.anyo | date:'y' }}</th>
+	<th>{{ vehiculo.fechaVenta | date:'dd-MM-yyyy' }}</th>
+	<th>{{ vehiculo.precio | number:'1.2-2' }} €</th>
+	<th>{{ vehiculo.getPVP() | number:'1.2-2' }} €</th>
+	<th>
+		&nbsp;<button type='button' (click)='vendido(i)'>Vendido</button>
+		<button type='button' (click)='rebajar(i)'>Rebajar</button>&nbsp;
+	</th>
+</tr>
+
+
 </table>
 
-<p *ngFor='let linea of lineas; let i=index'>
-    
-	{{linea}} <button type='button' (click)='delLinea(i)'>-</button>
-</p>
-
+<div>
 <p>
-<strong>
-TOTAL: {{total}}€
-</strong>
-</p>
+	<b>FILTRO:</b>&nbsp;
+    <input type="text" [(ngModel)]="filtro"/>
+	<button type='button' (click)='filtrar()'>Aplicar</button>
+	</p>
+</div>
+
 </table>
 
