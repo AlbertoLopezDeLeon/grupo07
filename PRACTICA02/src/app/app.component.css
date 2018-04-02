@@ -1,10 +1,13 @@
 
 table#tablaVehiculos,th,tr {
-	border: 4px solid red;
-	border-collapse: collapse
+	border: 1px solid black;
+	font-weight: normal
 }
 
-.classform1 label{width:100px;display:inline-block}
-.classform1 input{width:200px}
-.classform1 select{width:205px}
+.EstadoBueno {
+	background-color: green;
+}
 
+.EstadoMalo {
+	background-color: red;
+}

@@ -1,47 +1,51 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<table bgcolor =#F5BCA9 border = 0>
+<table bgcolor =#F07C2B border = 0>
 <div style="text-align:center">
   <h1>
 	{{ title }}
   </h1>
 </div>
 
+<div align="center">
+<p>
+	Filtrar por:&nbsp;
+    <input type="text" placeholder="(marca de coche)" [(ngModel)]="filtro"/>
+</p>
+</div>
+
 <table id="tablaVehiculos">
 	<tr>
-		<th>FOTO</th>
-		<th>MARCA</th>
-		<th>MODELO</th>
-		<th>AÑO</th>
-		<th>FECHA DE VENTA</th>
-		<th>PRECIO</th>
+		<th>Foto</th>
+		<th>Marca</th>
+		<th>Modelo</th>
+		<th>Año</th>
+		<th>En venta desde</th>
+		<th>Precio</th>
 		<th>PVP</th>
-		<th></th>
+		<th>Acciones</th>
 	</tr>
 
-<tr *ngFor='let vehiculo of vehiculosFiltro; let i=index'>
-    <th> <img src={{vehiculo.foto}} height="80" width="160"/></th>
-	<th>{{ vehiculo.marca | uppercase }}</th>
-	<th>{{ vehiculo.modelo | lowercase }}</th>
-	<th>{{ vehiculo.anyo | date:'y' }}</th>
-	<th>{{ vehiculo.fechaVenta | date:'dd-MM-yyyy' }}</th>
-	<th>{{ vehiculo.precio | number:'1.2-2' }} €</th>
-	<th>{{ vehiculo.getPVP() | number:'1.2-2' }} €</th>
+<tr *ngFor='let id of getFiltrados();'>
+    <th> <div *ngIf="vehiculos[id].foto != ''"> <div> <img src={{vehiculos[id].foto}} height="80" width="160"/> </div> </div> 
+		 <div *ngIf="vehiculos[id].foto == ''"> <div> (sin foto!) </div> </div>
+	</th>
+	<th>{{ vehiculos[id].marca | uppercase }}</th>
+	<th>{{ vehiculos[id].modelo | lowercase }}</th>
+	<th>{{ vehiculos[id].anyo | date:'y' }}</th>
+	<th>{{ vehiculos[id].fechaVenta | date:'MM-yyyy' }}</th>
+	<th> <div [ngClass] = "{'EstadoBueno': vehiculos[id].estado == EstadoCoche.BUENO,
+						   'EstadoMalo': vehiculos[id].estado == EstadoCoche.MALO }">
+		{{ vehiculos[id].precio | number:'1.0-0' }}€ </div>
+	</th>
+	<th>{{ vehiculos[id].getPVP() | number:'1.0-0' }}€</th>
 	<th>
-		&nbsp;<button type='button' (click)='vendido(i)'>Vendido</button>
-		<button type='button' (click)='rebajar(i)'>Rebajar</button>&nbsp;
+		&nbsp;<button type='button' (click)='vendido(id)'>Vendido</button>
+		<button type='button' (click)='rebajar(id)'>Rebajar</button>&nbsp;
 	</th>
 </tr>
 
 
 </table>
-
-<div>
-<p>
-	<b>FILTRO:</b>&nbsp;
-    <input type="text" [(ngModel)]="filtro"/>
-	<button type='button' (click)='filtrar()'>Aplicar</button>
-	</p>
-</div>
 
 </table>
 
