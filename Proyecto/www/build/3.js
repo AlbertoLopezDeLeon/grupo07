@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 276:
+/***/ 273:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "VerIncidenciasPageModule", function() { return VerIncidenciasPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntregaCursoPageModule", function() { return EntregaCursoPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ver_incidencias__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entrega_curso__ = __webpack_require__(280);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,23 +18,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var VerIncidenciasPageModule = /** @class */ (function () {
-    function VerIncidenciasPageModule() {
+var EntregaCursoPageModule = /** @class */ (function () {
+    function EntregaCursoPageModule() {
     }
-    VerIncidenciasPageModule = __decorate([
+    EntregaCursoPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__ver_incidencias__["a" /* VerIncidenciasPage */],
+                __WEBPACK_IMPORTED_MODULE_2__entrega_curso__["a" /* EntregaCursoPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__ver_incidencias__["a" /* VerIncidenciasPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["d" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__entrega_curso__["a" /* EntregaCursoPage */]),
             ],
         })
-    ], VerIncidenciasPageModule);
-    return VerIncidenciasPageModule;
+    ], EntregaCursoPageModule);
+    return EntregaCursoPageModule;
 }());
 
-//# sourceMappingURL=ver-incidencias.module.js.map
+//# sourceMappingURL=entrega-curso.module.js.map
 
 /***/ }),
 
@@ -42,9 +42,9 @@ var VerIncidenciasPageModule = /** @class */ (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return VerIncidenciasPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EntregaCursoPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -57,29 +57,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the VerIncidenciasPage page.
+ * Generated class for the EntregaCursoPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var VerIncidenciasPage = /** @class */ (function () {
-    function VerIncidenciasPage(navCtrl, navParams) {
+var EntregaCursoPage = /** @class */ (function () {
+    function EntregaCursoPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
     }
-    VerIncidenciasPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad VerIncidenciasPage');
+    EntregaCursoPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad EntregaCursoPage');
     };
-    VerIncidenciasPage = __decorate([
+    EntregaCursoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ver-incidencias',template:/*ion-inline-start:"C:\Users\Alberto\Documents\GitHub\grupo07\MyApp\src\pages\ver-incidencias\ver-incidencias.html"*/'<!--\n  Generated template for the VerIncidenciasPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>VerIncidencias</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"C:\Users\Alberto\Documents\GitHub\grupo07\MyApp\src\pages\ver-incidencias\ver-incidencias.html"*/,
+            selector: 'page-entrega-curso',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\entrega-curso\entrega-curso.html"*/'<!--\n\n  Generated template for the EntregaCursoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n    <ion-title>EntregaCurso</ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding>\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\entrega-curso\entrega-curso.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
-    ], VerIncidenciasPage);
-    return VerIncidenciasPage;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavParams */]])
+    ], EntregaCursoPage);
+    return EntregaCursoPage;
 }());
 
-//# sourceMappingURL=ver-incidencias.js.map
+//# sourceMappingURL=entrega-curso.js.map
 
 /***/ })
 

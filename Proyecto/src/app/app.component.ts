@@ -4,6 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { AdministradorPage } from '../pages/administrador/administrador';
+import { RepartidorPage } from '../pages/repartidor/repartidor';
 
 @Component({
   templateUrl: 'app.html'

@@ -25677,3 +25677,21 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+#logo {
+  text-align: center;
+  padding-top: 10%;
+}
+
+#logo #titulo-aplicacion {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#cuadrosTexto {
+  padding-top: 10%;
+}
+
+#botonAcceder {
+  text-align: center;
+  padding-top: 0%;
+}

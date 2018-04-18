@@ -1,6 +1,7 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdministradorPage } from '../administrador/administrador';
+import { RepartidorPage } from '../repartidor/repartidor';
 
 
 /**
@@ -17,11 +18,20 @@ import { AdministradorPage } from '../administrador/administrador';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  usuario: string;
+  contrasenya: string;
 
-	gotoTabs(){
-		this.navCtrl.setRoot(AdministradorPage);
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
+
+	login(){
+		if (this.usuario.match("Cristian") && this.contrasenya.match("1234")) {
+			this.navCtrl.setRoot(AdministradorPage); 
+		}
+		else 
+		{
+			this.navCtrl.setRoot(RepartidorPage); 
+		}
 	}
 
 }
