@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AdministradorPage } from '../administrador/administrador';
 import { RepartidorPage } from '../repartidor/repartidor';
+import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 
 
 /**
@@ -21,7 +22,7 @@ export class LoginPage {
   usuario: string;
   contrasenya: string;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
 	}
 
 	login(){
