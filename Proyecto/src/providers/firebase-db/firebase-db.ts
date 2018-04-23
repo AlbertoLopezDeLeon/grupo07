@@ -1,5 +1,6 @@
 //import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { TipoUsuario, Usuario } from '../../models/usuario';
 
 
 import { AngularFireDatabase} from 'angularfire2/database';
@@ -12,8 +13,25 @@ import { AngularFireDatabase} from 'angularfire2/database';
 @Injectable()
 export class FirebaseDbProvider {
 
-  constructor(public afDB:AngularFireDatabase) {
-    console.log('Hello FirebaseDbProvider Provider');
-  }
+	private usuariosRef = this.afDB.list<Usuario>('usuarios');
+
+	constructor(public afDB:AngularFireDatabase) {
+		console.log('Hello FirebaseDbProvider Provider');
+	}
+  
+	guardaUsuario(usuario:Usuario) {	
+		return this.afDB.database.ref('usuarios/'+usuario.getId()).set(usuario);
+	}
+	
+	delUsuario(id:number) {
+		this.afDB.database.ref('usuarios/'+id).remove();
+	}
+	
+	getUsuarios():any {
+		if (this.usuariosRef != null) {
+			return this.usuariosRef.valueChanges();
+		}
+	}
+  
 
 }

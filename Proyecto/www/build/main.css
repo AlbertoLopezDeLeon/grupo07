@@ -25678,6 +25678,15 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
+#menuSuperior {
+  text-align: left;
+}
+
+#menuSuperior #tituloMenuSuperior {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 #logo {
   text-align: center;
   padding-top: 10%;

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
+
 
 /**
  * Generated class for the AsignacionRepartosPage page.
@@ -22,4 +24,9 @@ export class AsignacionRepartosPage {
     console.log('ionViewDidLoad AsignacionRepartosPage');
   }
 
+  /*
+  goToLoginPage() {
+	this.navCtrl.setRoot(LoginPage);
+  }
+  */
 }
