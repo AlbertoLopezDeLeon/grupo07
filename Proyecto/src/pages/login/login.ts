@@ -38,7 +38,7 @@ export class LoginPage {
 		let usuario1:Usuario = new Usuario(1,"Cristian","1234",TipoUsuario.Administrador);
 		this.dbFirebase.guardaUsuario(usuario1);
 			
-		let usuario2:Usuario = new Usuario(2,"Ivan","1234",TipoUsuario.Administrador);
+		let usuario2:Usuario = new Usuario(2,"Ivan","12345",TipoUsuario.Administrador);
 		this.dbFirebase.guardaUsuario(usuario2);
 		
 		//Repartidores
