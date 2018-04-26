@@ -35,19 +35,24 @@ export class LoginPage {
 
 	crearUsuarios() {
 		//Administradores
-		let usuario1:Usuario = new Usuario(1,"Cristian","1234",TipoUsuario.Administrador);
+		let usuario1:Usuario = new Usuario(1,"Cristian",45,"Automovil","1234",TipoUsuario.Administrador);
 		this.dbFirebase.guardaUsuario(usuario1);
 			
-		let usuario2:Usuario = new Usuario(2,"Ivan","12345",TipoUsuario.Administrador);
+		let usuario2:Usuario = new Usuario(2,"Ivan",34,"Automovil","1234",TipoUsuario.Administrador);
 		this.dbFirebase.guardaUsuario(usuario2);
 		
 		//Repartidores
-		let usuario3:Usuario = new Usuario(3,"Alberto","1234",TipoUsuario.Repartidor);
+		let usuario3:Usuario = new Usuario(3,"Alberto",23,"Automovil","1234",TipoUsuario.Repartidor);
 		this.dbFirebase.guardaUsuario(usuario3);
 			
-		let usuario4:Usuario = new Usuario(4,"Juan","1234",TipoUsuario.Repartidor);
+		let usuario4:Usuario = new Usuario(4,"Angelo",22,"Moto","1234",TipoUsuario.Repartidor);
 		this.dbFirebase.guardaUsuario(usuario4);
-			
+		
+		let usuario5:Usuario = new Usuario(5,"Jefferson",23,"Automovil","1234",TipoUsuario.Repartidor);
+		this.dbFirebase.guardaUsuario(usuario5);
+		
+		let usuario6:Usuario = new Usuario(6,"Frank",36,"Moto","1234",TipoUsuario.Repartidor);
+		this.dbFirebase.guardaUsuario(usuario6);		
 	}
 	
 	borrarUsuarios() {
@@ -55,6 +60,8 @@ export class LoginPage {
 		this.dbFirebase.delUsuario(2);
 		this.dbFirebase.delUsuario(3);
 		this.dbFirebase.delUsuario(4);
+		this.dbFirebase.delUsuario(5);
+		this.dbFirebase.delUsuario(6);
 	}
 	
 	login(){

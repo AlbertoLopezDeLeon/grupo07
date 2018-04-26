@@ -45,6 +45,7 @@ var ListaRepartidoresPageModule = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaRepartidoresPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__ = __webpack_require__(105);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -56,6 +57,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /**
  * Generated class for the ListaRepartidoresPage page.
  *
@@ -63,24 +66,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var ListaRepartidoresPage = /** @class */ (function () {
-    function ListaRepartidoresPage(navCtrl, navParams, app) {
+    function ListaRepartidoresPage(navCtrl, navParams, app, dbFirebase, toastCtrl) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.app = app;
+        this.dbFirebase = dbFirebase;
+        this.toastCtrl = toastCtrl;
     }
     ListaRepartidoresPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad ListaRepartidoresPage');
+    };
+    ListaRepartidoresPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.dbFirebase.getUsuarios().subscribe(function (listaUsuarios) { _this.listaUsuarios = listaUsuarios; });
     };
     ListaRepartidoresPage.prototype.goToLoginPage = function () {
         //this.navCtrl.setRoot(LoginPage);
         var root = this.app.getRootNav();
         root.popToRoot();
     };
+    ListaRepartidoresPage.prototype.asignacionAutomaticaMensaje = function () {
+        var toast = this.toastCtrl.create({
+            message: 'Funcionalidad no implementada',
+            duration: 3000
+        });
+        toast.present();
+    };
     ListaRepartidoresPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-lista-repartidores',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\lista-repartidores\lista-repartidores.html"*/'<!--\n\n  Generated template for the ListaRepartidoresPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\lista-repartidores\lista-repartidores.html"*/,
+            selector: 'page-lista-repartidores',template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\lista-repartidores\lista-repartidores.html"*/'<!--\n\n  Generated template for the ListaRepartidoresPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-item class="asignacionManual">\n\n		<ion-label><font size=2>Filtrar solo los repartidores en ruta</font></ion-label>\n\n		<ion-toggle [(ngModel)]="filtro" (click)="asignacionAutomaticaMensaje()"></ion-toggle>\n\n	</ion-item>\n\n	\n\n	<ion-list *ngFor="let usuario of listaUsuarios">\n\n		<ion-label *ngIf="usuario.tipo == \'1\'">\n\n			<ion-item class="infoEntrega" text-wrap>\n\n					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70"/>\n\n					<p>Nombre: {{usuario.nombre}}</p>\n\n					<p>Edad: {{usuario.edad}} </p>\n\n					<p>Vehiculo: {{usuario.vehiculo}} </p>\n\n			</ion-item>\n\n		</ion-label>\n\n	</ion-list>\n\n	\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\lista-repartidores\lista-repartidores.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
     ], ListaRepartidoresPage);
     return ListaRepartidoresPage;
 }());

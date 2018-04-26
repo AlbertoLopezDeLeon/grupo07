@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 import { TipoUsuario, Usuario} from '../../models/usuario';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
@@ -114,5 +114,4 @@ export class AsignacionRepartosPage {
 		});
 		toast.present();
 	}
-  
 }
