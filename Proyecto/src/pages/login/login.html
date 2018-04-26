@@ -13,26 +13,26 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class ="bg">
 	<div id="logo">
-		<img class="logo-imagen" src="assets/imgs/LogoApp2.png" width="120" height="120"/>
+		<img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="120" height="120"/>
 		<h3 id="titulo-aplicacion">Routing Deal</h3>
 	</div>
 	
 	<form (ngSubmit)="login()">
-	<ion-list id="cuadrosTexto">
-		<ion-item>
-			<ion-label color="primary">Usuario</ion-label>
+	<ion-list id="cuadrosTexto" >
+		<ion-item style="background:#FEE7C0">
+			<ion-label color="black"><b>Usuario:</b></ion-label>
 			<ion-input type="text" [(ngModel)]="usuario" name="usuario"></ion-input>
 		</ion-item>
-		<ion-item>
-			<ion-label color="primary">Contraseña</ion-label>
+		<ion-item style="background:#FEEDD0">
+			<ion-label color="black"><b>Contraseña:</b></ion-label>
 			<ion-input type="password" [(ngModel)]="contrasenya" name="contrasenya"></ion-input>
 		</ion-item>
 	</ion-list>
 	
 	<div id="botonAcceder">
-		<button ion-button type="submit">Acceder</button>
+		<button ion-button type="submit" style="background:#FECC76">Acceder</button>
 	</div>
 	</form>
 </ion-content>

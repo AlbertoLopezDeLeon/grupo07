@@ -24,9 +24,7 @@ export class AsignacionRepartosPage {
     console.log('ionViewDidLoad AsignacionRepartosPage');
   }
 
-  
   goToLoginPage() {
-	//this.navCtrl.setRoot(LoginPage);
 	const root = this.app.getRootNav();
 	root.popToRoot();
   }
