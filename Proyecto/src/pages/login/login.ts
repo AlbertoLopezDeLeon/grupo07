@@ -29,8 +29,8 @@ export class LoginPage {
 		this.contrasenya = "";
 		
 		//Limpiamos y creamos los usuarios en la BD
-		this.borrarUsuarios();
-		this.crearUsuarios();
+		//this.borrarUsuarios();
+		//this.crearUsuarios();
 	}
 
 	crearUsuarios() {

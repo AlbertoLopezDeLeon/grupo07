@@ -21,5 +21,29 @@
 
 
 <ion-content padding class ="bg">
-
+	<ion-list>
+		<ion-item class="botonesAsignacion">
+			<button ion-button>Asignación automática</button>
+		</ion-item>
+		<ion-item class="asignacionManual">
+			ASIGNACIÓN MANUAL
+		</ion-item>
+	</ion-list>
+	
+	<ion-list *ngFor="let entrega of listaEntregas">
+		<ion-item class="entregaAsignacion">
+			Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon> {{ getRepartidorName(entrega.id)}}
+		</ion-item>
+		<ion-item class="infoEntrega" text-wrap>
+			<p>Dirección: {{entrega. direccion }}</p>
+			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   
+			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list>
+		<ion-item class="botonesAsignacion">
+			<button ion-button>Finalizar asignación manual</button>
+		</ion-item>
+	</ion-list>
 </ion-content>
