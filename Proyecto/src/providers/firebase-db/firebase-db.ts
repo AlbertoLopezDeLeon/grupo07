@@ -38,7 +38,7 @@ export class FirebaseDbProvider {
 	
 	//Metodos para entregas
 	guardaEntrega(entrega:Entrega) {	
-		return this.afDB.database.ref('entregas/'+entrega.getId()).set(entrega);
+		return this.afDB.database.ref('entregas/'+entrega.id).set(entrega);
 	}
 	
 	delEntrega(id:number) {

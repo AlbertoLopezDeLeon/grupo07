@@ -1,14 +1,14 @@
 webpackJsonp([3],{
 
-/***/ 337:
+/***/ 339:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EntregaCursoPageModule", function() { return EntregaCursoPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ListaPaquetesPageModule", function() { return ListaPaquetesPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__entrega_curso__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__lista_paquetes__ = __webpack_require__(347);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,31 +18,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var EntregaCursoPageModule = /** @class */ (function () {
-    function EntregaCursoPageModule() {
+var ListaPaquetesPageModule = /** @class */ (function () {
+    function ListaPaquetesPageModule() {
     }
-    EntregaCursoPageModule = __decorate([
+    ListaPaquetesPageModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_2__entrega_curso__["a" /* EntregaCursoPage */],
+                __WEBPACK_IMPORTED_MODULE_2__lista_paquetes__["a" /* ListaPaquetesPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__entrega_curso__["a" /* EntregaCursoPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__lista_paquetes__["a" /* ListaPaquetesPage */]),
             ],
         })
-    ], EntregaCursoPageModule);
-    return EntregaCursoPageModule;
+    ], ListaPaquetesPageModule);
+    return ListaPaquetesPageModule;
 }());
 
-//# sourceMappingURL=entrega-curso.module.js.map
+//# sourceMappingURL=lista-paquetes.module.js.map
 
 /***/ }),
 
-/***/ 345:
+/***/ 347:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EntregaCursoPage; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListaPaquetesPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -57,35 +57,34 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 /**
- * Generated class for the EntregaCursoPage page.
+ * Generated class for the ListaPaquetesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-var EntregaCursoPage = /** @class */ (function () {
-    function EntregaCursoPage(navCtrl, navParams, app) {
+var ListaPaquetesPage = /** @class */ (function () {
+    function ListaPaquetesPage(navCtrl, navParams, app) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.app = app;
     }
-    EntregaCursoPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad EntregaCursoPage');
+    ListaPaquetesPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad ListaPaquetesPage');
     };
-    EntregaCursoPage.prototype.goToLoginPage = function () {
+    ListaPaquetesPage.prototype.goToLoginPage = function () {
         var root = this.app.getRootNav();
         root.popToRoot();
     };
-    EntregaCursoPage = __decorate([
+    ListaPaquetesPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-entrega-curso',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\entrega-curso\entrega-curso.html"*/'<!--\n\n  Generated template for the EntregaCursoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\entrega-curso\entrega-curso.html"*/,
+            selector: 'page-lista-paquetes',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\lista-paquetes\lista-paquetes.html"*/'<!--\n\n  Generated template for the ListaPaquetesPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\lista-paquetes\lista-paquetes.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]) === "function" && _c || Object])
-    ], EntregaCursoPage);
-    return EntregaCursoPage;
-    var _a, _b, _c;
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */]])
+    ], ListaPaquetesPage);
+    return ListaPaquetesPage;
 }());
 
-//# sourceMappingURL=entrega-curso.js.map
+//# sourceMappingURL=lista-paquetes.js.map
 
 /***/ })
 

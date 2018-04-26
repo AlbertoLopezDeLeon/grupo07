@@ -23,7 +23,7 @@
 <ion-content padding class ="bg">
 	<ion-list>
 		<ion-item class="botonesAsignacion">
-			<button ion-button>Asignación automática</button>
+			<button ion-button (click)="asignacionAutomaticaMensaje()">Asignación automática</button>
 		</ion-item>
 		<ion-item class="asignacionManual">
 			ASIGNACIÓN MANUAL
@@ -32,7 +32,17 @@
 	
 	<ion-list *ngFor="let entrega of listaEntregas">
 		<ion-item class="entregaAsignacion">
-			Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon> {{ getRepartidorName(entrega.id)}}
+			<ion-label *ngIf="getRepartidorName(entrega.id) != 'no asignado'">
+				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon> {{ getRepartidorName(entrega.id)}}
+			</ion-label>
+			<ion-label *ngIf="getRepartidorName(entrega.id) == 'no asignado'">
+				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>
+			</ion-label>
+			<ion-select *ngIf="getRepartidorName(entrega.id) == 'no asignado'" placeholder="no asignado" [(ngModel)]="asignaciones[entrega.id - 1]">
+				<ng-container *ngFor="let repartidor of listaUsuarios">
+					<ion-option *ngIf="isRepartidor(repartidor)" [value]=repartidor.id>{{ repartidor.nombre }}</ion-option>
+				</ng-container>
+			</ion-select>
 		</ion-item>
 		<ion-item class="infoEntrega" text-wrap>
 			<p>Dirección: {{entrega. direccion }}</p>
@@ -43,7 +53,7 @@
 	
 	<ion-list>
 		<ion-item class="botonesAsignacion">
-			<button ion-button>Finalizar asignación manual</button>
+			<button ion-button (click)="finAsignacionManual()">Finalizar asignación manual</button>
 		</ion-item>
 	</ion-list>
 </ion-content>

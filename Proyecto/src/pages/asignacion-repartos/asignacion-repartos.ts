@@ -4,6 +4,7 @@ import { LoginPage } from '../../pages/login/login';
 import { TipoUsuario, Usuario} from '../../models/usuario';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
+import { ToastController } from 'ionic-angular';
 
 
 /**
@@ -21,8 +22,10 @@ import { Entrega} from '../../models/entrega';
 export class AsignacionRepartosPage {
 
 	listaEntregas: any;
+	listaUsuarios: any;
+	asignaciones:any[] = [null,null,null,null];
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
 		//Limpiamos y creamos las entregas en la BD
 		//this.borrarEntregas();
 		//this.crearEntregas();
@@ -61,6 +64,7 @@ export class AsignacionRepartosPage {
   
 	ionViewDidEnter(){
 		this.dbFirebase.getEntregas().subscribe(listaEntregas=>{this.listaEntregas=listaEntregas;});
+		this.dbFirebase.getUsuarios().subscribe(listaUsuarios=>{this.listaUsuarios=listaUsuarios;});
 	}
 	
 	getRepartidorName(idEntrega: number): string {
@@ -70,10 +74,45 @@ export class AsignacionRepartosPage {
 					return "no asignado";
 				}
 				else {
-					return this.listaEntregas[i].repartidor.getNombre();
+					return this.listaEntregas[i].repartidor.nombre;
 				}
 			}
 		}
+	}
+	
+	isRepartidor(usuario: Usuario): boolean {
+		if (usuario.tipo === TipoUsuario.Repartidor) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	finAsignacionManual() {
+		for (var i = 0; i < this.asignaciones.length; i++) {
+			if (this.asignaciones[i] != null) {
+				this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[i] - 1];
+				this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+			}
+		}
+		
+		this.asignacionManualMensaje();
+	}
+	
+	asignacionAutomaticaMensaje() {
+		let toast = this.toastCtrl.create({
+		  message: 'Funcionalidad no implementada',
+		  duration: 3000
+		});
+		toast.present();
+	}
+	
+	asignacionManualMensaje() {
+		let toast = this.toastCtrl.create({
+		  message: 'Asignacion manual completada con éxito',
+		  duration: 3000
+		});
+		toast.present();
 	}
   
 }

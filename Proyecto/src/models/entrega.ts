@@ -1,4 +1,4 @@
-import {TipoUsuario, Usuario} from 'usuario';
+import {TipoUsuario, Usuario} from '../models/usuario';
 
 export enum TipoIncidencia {	
 	DireccionErronea,
@@ -37,7 +37,7 @@ export class Entrega {
 	}
 	
 	public getRepartidorName(): string {
-		if (repartidor == null) {
+		if (this.repartidor == null) {
 			return "no asignado";
 		}
 		else {
