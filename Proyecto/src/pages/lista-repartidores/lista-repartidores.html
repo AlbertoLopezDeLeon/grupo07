@@ -23,13 +23,13 @@
 <ion-content padding class ="bg">
 	<ion-item class="asignacionManual">
 		<ion-label><font size=2>Filtrar solo los repartidores en ruta</font></ion-label>
-		<ion-toggle [(ngModel)]="filtro" (click)="asignacionAutomaticaMensaje()"></ion-toggle>
+		<ion-toggle (click)="asignacionAutomaticaMensaje()"></ion-toggle>
 	</ion-item>
 	
 	<ion-list *ngFor="let usuario of listaUsuarios">
 		<ion-label *ngIf="usuario.tipo == '1'">
 			<ion-item class="infoEntrega" text-wrap>
-					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70"/>
+					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70" (click)="goToRepDet(usuario.id)"/>
 					<p>Nombre: {{usuario.nombre}}</p>
 					<p>Edad: {{usuario.edad}} </p>
 					<p>Vehiculo: {{usuario.vehiculo}} </p>

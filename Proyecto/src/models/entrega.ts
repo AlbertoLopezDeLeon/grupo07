@@ -18,9 +18,9 @@ export class Entrega {
 	numeroBultos: number;
 	franjaHoraria: string;
 	pesoTotal: string;
-	incidencia: TipoIncidencia;
+	incidencia: string;
 	
-	constructor(id: number, nombreReceptor: string, telefonoReceptor: string, direccion: string, numeroBultos: number, franjaHoraria: string, pesoTotal: string) {
+	constructor(id: number, nombreReceptor: string, telefonoReceptor: string, direccion: string, numeroBultos: number, franjaHoraria: string, pesoTotal: string, incidencia: string) {
 		this.id = id;
 		this.repartidor = null;
 		this.nombreReceptor = nombreReceptor;
@@ -29,7 +29,7 @@ export class Entrega {
 		this.numeroBultos = numeroBultos;
 		this.franjaHoraria = franjaHoraria;
 		this.pesoTotal = pesoTotal;
-		this.incidencia = TipoIncidencia.SinIncidencia;
+		this.incidencia = incidencia;
 	}
 	
 	public getId(): number {
@@ -43,5 +43,9 @@ export class Entrega {
 		else {
 			return this.repartidor.getNombre();
 		}
+	}
+	
+	public getIncidencia(): string {
+		return this.incidencia;
 	}
 }

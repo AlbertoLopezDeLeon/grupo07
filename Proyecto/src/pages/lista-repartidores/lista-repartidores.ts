@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
+import { RepartidorDetalladoPage } from '../../pages/repartidor-detallado/repartidor-detallado';
 import { TipoUsuario, Usuario} from '../../models/usuario';
-import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
+import { FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
 import { ToastController } from 'ionic-angular';
 
@@ -21,7 +22,7 @@ import { ToastController } from 'ionic-angular';
 export class ListaRepartidoresPage {
   
   listaUsuarios: any;
-
+  id='';
 	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
   }
 
@@ -39,6 +40,9 @@ export class ListaRepartidoresPage {
 	root.popToRoot();
   }
   
+  goToRepDet(identificador){
+	  this.navCtrl.push(RepartidorDetalladoPage,{id:identificador});
+  }
   asignacionAutomaticaMensaje() {
 		let toast = this.toastCtrl.create({
 		  message: 'Funcionalidad no implementada',

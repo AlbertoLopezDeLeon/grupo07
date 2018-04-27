@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { RepartidorPage } from '../pages/repartidor/repartidor';
+import { RepartidorDetalladoPage } from '../pages/repartidor-detallado/repartidor-detallado';
 
 @Component({
   templateUrl: 'app.html'

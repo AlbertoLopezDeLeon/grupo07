@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, App, AlertController } from 'ionic-angular';
 import { LoginPage } from '../../pages/login/login';
 import { TipoUsuario, Usuario} from '../../models/usuario';
-import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
+import { FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
 import { ToastController } from 'ionic-angular';
 
@@ -33,16 +33,16 @@ export class AsignacionRepartosPage {
   
 	crearEntregas() {
 		//Entregas
-		let entrega1:Entrega = new Entrega(1,"Joan","687218832","Calle Mayor 15 2D",1,"12:00 - 14:00","5kg");
+		let entrega1:Entrega = new Entrega(1,"Joan","687218832","Calle Mayor 15 2D",1,"12:00 - 14:00","5kg","SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega1);
 		
-		let entrega2:Entrega = new Entrega(2,'Álvaro','633444567','Calle Rio Ebro 5 1D',3,'15:00 - 17:00','8kg');
+		let entrega2:Entrega = new Entrega(2,'Álvaro','633444567','Calle Rio Ebro 5 1D',3,'15:00 - 17:00','8kg',"DireccionErronea");
 		this.dbFirebase.guardaEntrega(entrega2);
 		
-		let entrega3:Entrega = new Entrega(3,'Ana','687252129','Calle Abedul 24 4A',1,'11:00 - 14:00','2kg');
+		let entrega3:Entrega = new Entrega(3,'Ana','687252129','Calle Abedul 24 4A',1,'11:00 - 14:00','2kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega3);
 		
-		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'11:00 - 13:00','12kg');
+		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'11:00 - 13:00','12kg',"PaqueteMalasCondiciones");
 		this.dbFirebase.guardaEntrega(entrega4);	
 	}
 	

@@ -21,5 +21,23 @@
 
 
 <ion-content padding class ="bg">
-
+	<ion-list *ngFor="let entrega of listaEntregas">
+		<ion-label *ngIf="entrega.incidencia != 'SinIncidencia'">
+			<ion-item class="infoEntrega">
+						<p><b><font color="black">Paquete: {{entrega.id}} </font></b></p> 
+						<p><font color="black">Repartidor:</font> {{entrega.repartidor}}
+						<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">
+						<ion-icon name="call"></ion-icon>
+						</button></p>
+						<p><font color="black">Tipo incidencia:</font> {{entrega.incidencia}}</p>
+						<p><font color="black">Cliente:</font> {{entrega.nombreReceptor}}
+						<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">
+						<ion-icon name="call"></ion-icon>
+						</button>
+						<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">
+						<ion-icon name="mail"></ion-icon>
+						</button></p>
+			</ion-item>
+		</ion-label>
+	</ion-list>
 </ion-content>

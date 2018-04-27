@@ -10,6 +10,8 @@ import { FirebaseDbProvider } from '../providers/firebase-db/firebase-db';
 import { LoginPage } from '../pages/login/login';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { RepartidorPage } from '../pages/repartidor/repartidor';
+import { RepartidorDetalladoPage } from '../pages/repartidor-detallado/repartidor-detallado';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +30,8 @@ export const fireBaseConfig={
     MyApp,
 	LoginPage,
 	AdministradorPage,
-	RepartidorPage
+	RepartidorPage,
+	RepartidorDetalladoPage
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ export const fireBaseConfig={
     MyApp,
 	LoginPage,
 	AdministradorPage,
-	RepartidorPage
+	RepartidorPage,
+	RepartidorDetalladoPage
   ],
   providers: [
     StatusBar,
