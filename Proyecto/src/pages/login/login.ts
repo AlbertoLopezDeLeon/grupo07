@@ -40,6 +40,12 @@ export class LoginPage {
 			
 		let usuario2:Usuario = new Usuario(2,"Ivan",34,654123658,"Automovil","1234",TipoUsuario.Administrador,"administrador2.png");
  		this.dbFirebase.guardaUsuario(usuario2);
+=======
+		this.dbFirebase.guardaUsuario(usuario1);
+			
+		let usuario2:Usuario = new Usuario(2,"Ivan",34,654123658,"Automovil","1234",TipoUsuario.Administrador,"administrador2.png");
+		this.dbFirebase.guardaUsuario(usuario2);
+>>>>>>> 361ca2751e1e9430af946c6e8e706d282a567142
 		
 		//Repartidores
 		let usuario3:Usuario = new Usuario(3,"Alberto",23,632456987,"Automovil","1234",TipoUsuario.Repartidor,"repartidor1.png");
