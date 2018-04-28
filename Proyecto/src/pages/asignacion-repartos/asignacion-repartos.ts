@@ -91,12 +91,36 @@ export class AsignacionRepartosPage {
 	finAsignacionManual() {
 		for (var i = 0; i < this.asignaciones.length; i++) {
 			if (this.asignaciones[i] != null) {
+				if (this.verificarSiTieneEntregas(this.listaUsuarios[this.asignaciones[i] - 1].id) == false){
+				
+					if (this.listaEntregas[i].repartidor == null) {
+						this.listaEntregas[i].enCurso = true;
+						alert("HOLA");
+					}
+				} else {
+					if (this.listaEntregas[i].repartidor == null) {
+						this.listaEntregas[i].enCurso = false;
+						alert("ADIOS");
+					}
+					
+				}
 				this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[i] - 1];
 				this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
 			}
 		}
 		
 		this.asignacionManualMensaje();
+	}
+	
+	verificarSiTieneEntregas(idRepartidor: number): boolean {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].repartidor != null) {
+				if (this.listaEntregas[i].repartidor.id === idRepartidor) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	
 	asignacionAutomaticaMensaje() {

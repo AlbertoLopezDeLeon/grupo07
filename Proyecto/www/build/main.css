@@ -25733,9 +25733,35 @@ page-entrega-curso .bg {
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
 }
 
+.botones {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: center;
+}
+
+.infoEntrega {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: left;
+  font-size: xx-small;
+}
+
 page-lista-paquetes .bg {
   background: -webkit-gradient(linear, left top, left bottom, from(#FECC76), to(#fff));
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
+}
+
+.botonFinalizarTurno {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: center;
+}
+
+.infoEntrega {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: left;
+  font-size: xx-small;
 }
 
 page-lista-repartidores .bg {

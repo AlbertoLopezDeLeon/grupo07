@@ -33,7 +33,7 @@ var AdministradorPage = /** @class */ (function () {
     }
     AdministradorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-administrador',template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\administrador\administrador.html"*/'<ion-tabs color="primary" tabsPlacement="top" >\n\n    <ion-tab [root]="asignacionRepartosRoot" tabTitle="Asignar"></ion-tab>\n\n    <ion-tab [root]="listaRepartidoresRoot" tabTitle="Lista repartidores"></ion-tab>\n\n    <ion-tab [root]="verIncidenciasRoot" tabTitle="Incidencias"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\administrador\administrador.html"*/
+            selector: 'page-administrador',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\administrador\administrador.html"*/'<ion-tabs color="primary" tabsPlacement="top" >\n\n    <ion-tab [root]="asignacionRepartosRoot" tabTitle="Asignar"></ion-tab>\n\n    <ion-tab [root]="listaRepartidoresRoot" tabTitle="Lista repartidores"></ion-tab>\n\n    <ion-tab [root]="verIncidenciasRoot" tabTitle="Incidencias"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\administrador\administrador.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
     ], AdministradorPage);
@@ -119,7 +119,7 @@ var LoginPage = /** @class */ (function () {
             }
             if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya === this.listaUsuarios[i].contrasenya &&
                 this.listaUsuarios[i].tipo == __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor) {
-                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__repartidor_repartidor__["a" /* RepartidorPage */]);
+                this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__repartidor_repartidor__["a" /* RepartidorPage */], { repartidor: this.usuario });
             }
         }
     };
@@ -129,7 +129,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar hide-tabs>\n\n    <ion-title></ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<div id="logo">\n\n		<img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="120" height="120"/>\n\n		<h3 id="titulo-aplicacion">Routing Deal</h3>\n\n	</div>\n\n	\n\n	<form (ngSubmit)="login()">\n\n	<ion-list id="cuadrosTexto" >\n\n		<ion-item style="background:#FEE7C0">\n\n			<ion-label color="black"><b>Usuario:</b></ion-label>\n\n			<ion-input type="text" [(ngModel)]="usuario" name="usuario"></ion-input>\n\n		</ion-item>\n\n		<ion-item style="background:#FEEDD0">\n\n			<ion-label color="black"><b>Contraseña:</b></ion-label>\n\n			<ion-input type="password" [(ngModel)]="contrasenya" name="contrasenya"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<div id="botonAcceder">\n\n		<button ion-button type="submit" style="background:#FECC76">Acceder</button>\n\n	</div>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar hide-tabs>\n\n    <ion-title></ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<div id="logo">\n\n		<img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="120" height="120"/>\n\n		<h3 id="titulo-aplicacion">Routing Deal</h3>\n\n	</div>\n\n	\n\n	<form (ngSubmit)="login()">\n\n	<ion-list id="cuadrosTexto" >\n\n		<ion-item style="background:#FEE7C0">\n\n			<ion-label color="black"><b>Usuario:</b></ion-label>\n\n			<ion-input type="text" [(ngModel)]="usuario" name="usuario"></ion-input>\n\n		</ion-item>\n\n		<ion-item style="background:#FEEDD0">\n\n			<ion-label color="black"><b>Contraseña:</b></ion-label>\n\n			<ion-input type="password" [(ngModel)]="contrasenya" name="contrasenya"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<div id="botonAcceder">\n\n		<button ion-button type="submit" style="background:#FECC76">Acceder</button>\n\n	</div>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]])
     ], LoginPage);
@@ -165,16 +165,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var RepartidorPage = /** @class */ (function () {
-    function RepartidorPage(navCtrl) {
+    function RepartidorPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
+        this.navParams = navParams;
         this.listaPaquetesRoot = 'ListaPaquetesPage';
         this.entregaCursoRoot = 'EntregaCursoPage';
+        this.repartidorParams = { repartidor: this.navParams.get('repartidor') };
     }
     RepartidorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-repartidor',template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/'<ion-tabs color="primary" tabsPlacement="top">\n\n    <ion-tab [root]="listaPaquetesRoot" tabTitle="Lista paquetes"></ion-tab>\n\n    <ion-tab [root]="entregaCursoRoot" tabTitle="Entrega curso"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/
+            selector: 'page-repartidor',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/'<ion-tabs color="primary" tabsPlacement="top">\n\n    <ion-tab [root]="listaPaquetesRoot" [rootParams]="repartidorParams" tabTitle="Lista paquetes"></ion-tab>\n\n    <ion-tab [root]="entregaCursoRoot" [rootParams]="repartidorParams" tabTitle="Entrega curso"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]])
     ], RepartidorPage);
     return RepartidorPage;
 }());
@@ -205,11 +207,11 @@ webpackEmptyAsyncContext.id = 120;
 
 var map = {
 	"../pages/administrador/administrador.module": [
-		338,
+		337,
 		8
 	],
 	"../pages/asignacion-repartos/asignacion-repartos.module": [
-		337,
+		338,
 		0
 	],
 	"../pages/entrega-curso/entrega-curso.module": [
@@ -314,7 +316,7 @@ var RepartidorDetalladoPage = /** @class */ (function () {
     };
     RepartidorDetalladoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-repartidor-detallado',template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/'<!--\n\n  Generated template for the RepartidorDetalladoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n  \n\n</ion-header>\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let usuario of listaUsuarios">\n\n		<ion-label *ngIf="usuario.id == id">\n\n			<ion-item class="infoEntrega" text-wrap>\n\n					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70" />\n\n					<p>Nombre: {{usuario.nombre}}</p>\n\n					<p>Telefono: {{usuario.telefono}}</p>\n\n					<p>Vehiculo: {{usuario.vehiculo}}</p>\n\n					<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">\n\n						<ion-icon name="information-circle"></ion-icon>\n\n					</button>\n\n			</ion-item>\n\n			  <p></p>\n\n			  <img style="width:100%" align="center" src="assets/imgs/Mapa.png" width="100" height="300" />\n\n		</ion-label>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/,
+            selector: 'page-repartidor-detallado',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/'<!--\n\n  Generated template for the RepartidorDetalladoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n  \n\n</ion-header>\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let usuario of listaUsuarios">\n\n		<ion-label *ngIf="usuario.id == id">\n\n			<ion-item class="infoEntrega" text-wrap>\n\n					<img class="logo-imagen" src="assets/imgs/{{usuario.ruta_imagen}}" align="left" width="70" height="70" />\n\n 					<p>Nombre: {{usuario.nombre}}</p>\n\n					<p>Telefono: {{usuario.telefono}}</p>\n\n					<p>Vehiculo: {{usuario.vehiculo}}</p>\n\n					<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">\n\n						<ion-icon name="information-circle"></ion-icon>\n\n					</button>\n\n			</ion-item>\n\n			  <p></p>\n\n			  <img style="width:100%" align="center" src="assets/imgs/Mapa.png" width="100" height="300" />\n\n		</ion-label>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */],
             __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
@@ -451,8 +453,8 @@ var AppModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_1__angular_platform_browser__["a" /* BrowserModule */],
                 __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
                     links: [
-                        { loadChildren: '../pages/asignacion-repartos/asignacion-repartos.module#AsignacionRepartosPageModule', name: 'AsignacionRepartosPage', segment: 'asignacion-repartos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/administrador/administrador.module#AdministradorPageModule', name: 'AdministradorPage', segment: 'administrador', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/asignacion-repartos/asignacion-repartos.module#AsignacionRepartosPageModule', name: 'AsignacionRepartosPage', segment: 'asignacion-repartos', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/entrega-curso/entrega-curso.module#EntregaCursoPageModule', name: 'EntregaCursoPage', segment: 'entrega-curso', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-paquetes/lista-paquetes.module#ListaPaquetesPageModule', name: 'ListaPaquetesPage', segment: 'lista-paquetes', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/lista-repartidores/lista-repartidores.module#ListaRepartidoresPageModule', name: 'ListaRepartidoresPage', segment: 'lista-repartidores', priority: 'low', defaultHistory: [] },
@@ -524,7 +526,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\criss\Desktop\Trabajos-UC3M\grupo07\Proyecto\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);

@@ -21,5 +21,19 @@
 
 
 <ion-content padding class ="bg">
-
+	<ion-list *ngFor="let entrega of listaEntregas">
+		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)" class="infoEntrega" text-wrap>
+			<p>Paquete {{entrega.id}}</p>
+			<p>Dirección: {{entrega.direccion }}</p>
+			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   
+			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list>
+		<ion-item class="botones">
+			<button ion-button (click)="realizarEntrega()">Realizar entrega</button>
+			<button ion-button (click)="incidencia()">Incidencia</button>
+		</ion-item>
+	</ion-list>
 </ion-content>

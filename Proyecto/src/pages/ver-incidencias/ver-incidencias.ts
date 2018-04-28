@@ -44,4 +44,17 @@ export class VerIncidenciasPage {
 		});
 		toast.present();
 	}
+	
+	getRepartidorName(idEntrega: number): string {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				if (this.listaEntregas[i].repartidor == null) {
+					return "no asignado";
+				}
+				else {
+					return this.listaEntregas[i].repartidor.nombre;
+				}
+			}
+		}
+	}
 }

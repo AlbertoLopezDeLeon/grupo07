@@ -29,8 +29,8 @@
 	<ion-list *ngFor="let usuario of listaUsuarios">
 		<ion-label *ngIf="usuario.tipo == '1'">
 			<ion-item class="infoEntrega" text-wrap>
-					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70" (click)="goToRepDet(usuario.id)"/>
-					<p>Nombre: {{usuario.nombre}}</p>
+					<img class="logo-imagen" src="assets/imgs/{{usuario.ruta_imagen}}" align="left" width="70" height="70" (click)="goToRepDet(usuario.id)"/>
+ 					<p>Nombre: {{usuario.nombre}}</p>
 					<p>Edad: {{usuario.edad}} </p>
 					<p>Vehiculo: {{usuario.vehiculo}} </p>
 			</ion-item>

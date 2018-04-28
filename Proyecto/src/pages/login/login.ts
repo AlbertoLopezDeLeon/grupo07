@@ -35,23 +35,23 @@ export class LoginPage {
 
 	crearUsuarios() {
 		//Administradores
-		let usuario1:Usuario = new Usuario(1,"Cristian",45,612356489,"Automovil","1234",TipoUsuario.Administrador);
-		this.dbFirebase.guardaUsuario(usuario1);
+		let usuario1:Usuario = new Usuario(1,"Cristian",45,612356489,"Automovil","1234",TipoUsuario.Administrador,"administrador1.png");
+ 		this.dbFirebase.guardaUsuario(usuario1);
 			
-		let usuario2:Usuario = new Usuario(2,"Ivan",34,654123658,"Automovil","1234",TipoUsuario.Administrador);
-		this.dbFirebase.guardaUsuario(usuario2);
+		let usuario2:Usuario = new Usuario(2,"Ivan",34,654123658,"Automovil","1234",TipoUsuario.Administrador,"administrador2.png");
+ 		this.dbFirebase.guardaUsuario(usuario2);
 		
 		//Repartidores
-		let usuario3:Usuario = new Usuario(3,"Alberto",23,632456987,"Automovil","1234",TipoUsuario.Repartidor);
+		let usuario3:Usuario = new Usuario(3,"Alberto",23,632456987,"Automovil","1234",TipoUsuario.Repartidor,"repartidor1.png");
 		this.dbFirebase.guardaUsuario(usuario3);
 			
-		let usuario4:Usuario = new Usuario(4,"Angelo",22,654233965,"Moto","1234",TipoUsuario.Repartidor);
+		let usuario4:Usuario = new Usuario(4,"Angelo",22,654233965,"Moto","1234",TipoUsuario.Repartidor,"repartidor2.png");
 		this.dbFirebase.guardaUsuario(usuario4);
 		
-		let usuario5:Usuario = new Usuario(5,"Jefferson",23,632112548,"Automovil","1234",TipoUsuario.Repartidor);
+		let usuario5:Usuario = new Usuario(5,"Jefferson",23,632112548,"Automovil","1234",TipoUsuario.Repartidor,"repartidor3.png");
 		this.dbFirebase.guardaUsuario(usuario5);
 		
-		let usuario6:Usuario = new Usuario(6,"Frank",36,654425649,"Moto","1234",TipoUsuario.Repartidor);
+		let usuario6:Usuario = new Usuario(6,"Frank",36,654425649,"Moto","1234",TipoUsuario.Repartidor,"repartidor4.png");
 		this.dbFirebase.guardaUsuario(usuario6);		
 	}
 	
@@ -73,7 +73,7 @@ export class LoginPage {
 
 			if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya === this.listaUsuarios[i].contrasenya &&
 				this.listaUsuarios[i].tipo == TipoUsuario.Repartidor) {
-				this.navCtrl.push(RepartidorPage); 
+				this.navCtrl.push(RepartidorPage, {repartidor:this.usuario}); 
 			}
 		}
 	}
