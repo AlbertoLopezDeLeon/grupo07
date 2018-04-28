@@ -24,7 +24,7 @@
 	<ion-list *ngFor="let usuario of listaUsuarios">
 		<ion-label *ngIf="usuario.id == id">
 			<ion-item class="infoEntrega" text-wrap>
-					<img class="logo-imagen" src="assets/imgs/Usuario.png" align="left" width="70" height="70" />
+					<img class="logo-imagen" src="assets/imgs/{{usuario.ruta_imagen}}" align="left" width="70" height="70" />
 					<p>Nombre: {{usuario.nombre}}</p>
 					<p>Telefono: {{usuario.telefono}}</p>
 					<p>Vehiculo: {{usuario.vehiculo}}</p>

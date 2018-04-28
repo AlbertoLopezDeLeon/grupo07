@@ -25,7 +25,7 @@
 		<ion-label *ngIf="entrega.incidencia != 'SinIncidencia'">
 			<ion-item class="infoEntrega">
 						<p><b><font color="black">Paquete: {{entrega.id}} </font></b></p> 
-						<p><font color="black">Repartidor:</font> {{entrega.repartidor}}
+						<p><font color="black">Repartidor:</font> {{entrega.repartidor.nombre}}
 						<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">
 						<ion-icon name="call"></ion-icon>
 						</button></p>
