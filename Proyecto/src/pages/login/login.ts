@@ -4,7 +4,7 @@ import { AdministradorPage } from '../administrador/administrador';
 import { RepartidorPage } from '../repartidor/repartidor';
 import {FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import {TipoUsuario, Usuario} from '../../models/usuario';
-
+import { ToastController } from 'ionic-angular';
 
 /**
  * Generated class for the LoginPage page.
@@ -24,7 +24,7 @@ export class LoginPage {
 	contrasenya: string;
 	listaUsuarios: any;
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public dbFirebase:FirebaseDbProvider,public toastCtrl: ToastController) {
 		this.usuario = "";
 		this.contrasenya = "";
 		
@@ -69,13 +69,32 @@ export class LoginPage {
 			if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya === this.listaUsuarios[i].contrasenya && 
 				this.listaUsuarios[i].tipo == TipoUsuario.Administrador) {
 				this.navCtrl.push(AdministradorPage); 
+                break;
 			}
-
-			if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya === this.listaUsuarios[i].contrasenya &&
+            
+            if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya === this.listaUsuarios[i].contrasenya &&
 				this.listaUsuarios[i].tipo == TipoUsuario.Repartidor) {
-				this.navCtrl.push(RepartidorPage, {repartidor:this.usuario}); 
+				this.navCtrl.push(RepartidorPage, {repartidor:this.usuario});
+                break;
+            }
+
+			if (this.usuario === this.listaUsuarios[i].nombre && this.contrasenya !== this.listaUsuarios[i].contrasenya) {
+                this.loginFailMensaje("Contraseña incorrecta");
+                break;
 			}
+            if(this.usuario !== this.listaUsuarios[i].nombre && i === this.listaUsuarios.length -1){
+                this.loginFailMensaje("Usuario no registrado");
+                break;
+            }
 		}
+	}
+    
+    loginFailMensaje(msg: string) {
+		let toast = this.toastCtrl.create({
+		  message: msg,
+		  duration: 3000,
+		});
+		toast.present();
 	}
 	
 	ionViewDidEnter(){
