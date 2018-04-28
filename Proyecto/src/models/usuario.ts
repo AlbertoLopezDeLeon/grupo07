@@ -22,6 +22,7 @@ export class Usuario {
 		this.contrasenya = contrasenya;
 		this.tipo = tipo;
 		this.ruta_imagen = ruta_imagen;
+	}
 	
 	public getId(): number {
 		return this.id;

@@ -95,12 +95,10 @@ export class AsignacionRepartosPage {
 				
 					if (this.listaEntregas[i].repartidor == null) {
 						this.listaEntregas[i].enCurso = true;
-						alert("HOLA");
 					}
 				} else {
 					if (this.listaEntregas[i].repartidor == null) {
 						this.listaEntregas[i].enCurso = false;
-						alert("ADIOS");
 					}
 					
 				}

@@ -89,18 +89,18 @@ var LoginPage = /** @class */ (function () {
     }
     LoginPage.prototype.crearUsuarios = function () {
         //Administradores
-        var usuario1 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](1, "Cristian", 45, 612356489, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Administrador);
+        var usuario1 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](1, "Cristian", 45, 612356489, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Administrador, "administrador1.png");
         this.dbFirebase.guardaUsuario(usuario1);
-        var usuario2 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](2, "Ivan", 34, 654123658, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Administrador);
+        var usuario2 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](2, "Ivan", 34, 654123658, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Administrador, "administrador2.png");
         this.dbFirebase.guardaUsuario(usuario2);
         //Repartidores
-        var usuario3 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](3, "Alberto", 23, 632456987, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor);
+        var usuario3 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](3, "Alberto", 23, 632456987, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor, "repartidor1.png");
         this.dbFirebase.guardaUsuario(usuario3);
-        var usuario4 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](4, "Angelo", 22, 654233965, "Moto", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor);
+        var usuario4 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](4, "Angelo", 22, 654233965, "Moto", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor, "repartidor2.png");
         this.dbFirebase.guardaUsuario(usuario4);
-        var usuario5 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](5, "Jefferson", 23, 632112548, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor);
+        var usuario5 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](5, "Jefferson", 23, 632112548, "Automovil", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor, "repartidor3.png");
         this.dbFirebase.guardaUsuario(usuario5);
-        var usuario6 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](6, "Frank", 36, 654425649, "Moto", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor);
+        var usuario6 = new __WEBPACK_IMPORTED_MODULE_5__models_usuario__["b" /* Usuario */](6, "Frank", 36, 654425649, "Moto", "1234", __WEBPACK_IMPORTED_MODULE_5__models_usuario__["a" /* TipoUsuario */].Repartidor, "repartidor4.png");
         this.dbFirebase.guardaUsuario(usuario6);
     };
     LoginPage.prototype.borrarUsuarios = function () {
@@ -340,7 +340,7 @@ var TipoUsuario;
     TipoUsuario[TipoUsuario["Repartidor"] = 1] = "Repartidor";
 })(TipoUsuario || (TipoUsuario = {}));
 var Usuario = /** @class */ (function () {
-    function Usuario(id, nombre, edad, telefono, vehiculo, contrasenya, tipo) {
+    function Usuario(id, nombre, edad, telefono, vehiculo, contrasenya, tipo, ruta_imagen) {
         this.id = id;
         this.nombre = nombre;
         this.edad = edad;
@@ -348,6 +348,7 @@ var Usuario = /** @class */ (function () {
         this.vehiculo = vehiculo;
         this.contrasenya = contrasenya;
         this.tipo = tipo;
+        this.ruta_imagen = ruta_imagen;
     }
     Usuario.prototype.getId = function () {
         return this.id;
@@ -369,6 +370,9 @@ var Usuario = /** @class */ (function () {
     };
     Usuario.prototype.getTipo = function () {
         return this.tipo;
+    };
+    Usuario.prototype.getRutaImagen = function () {
+        return this.ruta_imagen;
     };
     return Usuario;
 }());
@@ -528,9 +532,10 @@ var MyApp = /** @class */ (function () {
     MyApp = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _c || Object])
     ], MyApp);
     return MyApp;
+    var _a, _b, _c;
 }());
 
 //# sourceMappingURL=app.component.js.map
