@@ -12,9 +12,6 @@ export class Usuario {
 	contrasenya: string;
 	tipo: TipoUsuario;
 	ruta_imagen: string;
-=======
-    ruta_imagen: string;
->>>>>>> 361ca2751e1e9430af946c6e8e706d282a567142
 	
 	constructor(id: number, nombre: string, edad: number, telefono: number, vehiculo: string, contrasenya: string, tipo: TipoUsuario, ruta_imagen :string) {
 		this.id = id;
@@ -25,10 +22,6 @@ export class Usuario {
 		this.contrasenya = contrasenya;
 		this.tipo = tipo;
 		this.ruta_imagen = ruta_imagen;
-=======
-        this.ruta_imagen = ruta_imagen;
->>>>>>> 361ca2751e1e9430af946c6e8e706d282a567142
-	}
 	
 	public getId(): number {
 		return this.id;
