@@ -1,14 +1,14 @@
 webpackJsonp([0],{
 
-/***/ 338:
+/***/ 340:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AsignacionRepartosPageModule", function() { return AsignacionRepartosPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__asignacion_repartos__ = __webpack_require__(346);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__asignacion_repartos__ = __webpack_require__(350);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -27,7 +27,7 @@ var AsignacionRepartosPageModule = /** @class */ (function () {
                 __WEBPACK_IMPORTED_MODULE_2__asignacion_repartos__["a" /* AsignacionRepartosPage */],
             ],
             imports: [
-                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__asignacion_repartos__["a" /* AsignacionRepartosPage */]),
+                __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__asignacion_repartos__["a" /* AsignacionRepartosPage */]),
             ],
         })
     ], AsignacionRepartosPageModule);
@@ -38,16 +38,16 @@ var AsignacionRepartosPageModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 346:
+/***/ 350:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AsignacionRepartosPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(26);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_usuario__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(56);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_entrega__ = __webpack_require__(347);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__models_usuario__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__models_entrega__ = __webpack_require__(351);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -78,8 +78,8 @@ var AsignacionRepartosPage = /** @class */ (function () {
         this.toastCtrl = toastCtrl;
         this.asignaciones = [null, null, null, null];
         //Limpiamos y creamos las entregas en la BD
-        //this.borrarEntregas();
-        //this.crearEntregas();
+        this.borrarEntregas();
+        this.crearEntregas();
     }
     AsignacionRepartosPage.prototype.crearEntregas = function () {
         //Entregas
@@ -131,7 +131,7 @@ var AsignacionRepartosPage = /** @class */ (function () {
         }
     };
     AsignacionRepartosPage.prototype.finAsignacionManual = function () {
-        for (var i = 0; i < this.asignaciones.length; i++) {
+        for (var i = 0; i < this.listaEntregas.length; i++) {
             if (this.asignaciones[i] != null) {
                 if (this.verificarSiTieneEntregas(this.listaUsuarios[this.asignaciones[i] - 1].id) == false) {
                     if (this.listaEntregas[i].repartidor == null) {
@@ -143,7 +143,7 @@ var AsignacionRepartosPage = /** @class */ (function () {
                         this.listaEntregas[i].enCurso = false;
                     }
                 }
-                this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[i] - 1];
+                this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[this.listaEntregas[i].id - 1] - 1];
                 this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
             }
         }
@@ -175,18 +175,19 @@ var AsignacionRepartosPage = /** @class */ (function () {
     };
     AsignacionRepartosPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-asignacion-repartos',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\asignacion-repartos\asignacion-repartos.html"*/'<!--\n\n  Generated template for the AsignacionRepartosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n	\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list>\n\n		<ion-item class="botonesAsignacion">\n\n			<button ion-button (click)="asignacionAutomaticaMensaje()">Asignación automática</button>\n\n		</ion-item>\n\n		<ion-item class="asignacionManual">\n\n			ASIGNACIÓN MANUAL\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list *ngFor="let entrega of listaEntregas">\n\n		<ion-item class="entregaAsignacion">\n\n			<ion-label *ngIf="getRepartidorName(entrega.id) != \'no asignado\'">\n\n				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon> {{ getRepartidorName(entrega.id)}}\n\n			</ion-label>\n\n			<ion-label *ngIf="getRepartidorName(entrega.id) == \'no asignado\'">\n\n				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>\n\n			</ion-label>\n\n			<ion-select *ngIf="getRepartidorName(entrega.id) == \'no asignado\'" placeholder="no asignado" [(ngModel)]="asignaciones[entrega.id - 1]">\n\n				<ng-container *ngFor="let repartidor of listaUsuarios">\n\n					<ion-option *ngIf="isRepartidor(repartidor)" [value]=repartidor.id>{{ repartidor.nombre }}</ion-option>\n\n				</ng-container>\n\n			</ion-select>\n\n		</ion-item>\n\n		<ion-item class="infoEntrega" text-wrap>\n\n			<p>Dirección: {{entrega.direccion }}</p>\n\n			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   \n\n			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>\n\n		</ion-item>	\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botonesAsignacion">\n\n			<button ion-button (click)="finAsignacionManual()">Finalizar asignación manual</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\asignacion-repartos\asignacion-repartos.html"*/,
+            selector: 'page-asignacion-repartos',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\asignacion-repartos\asignacion-repartos.html"*/'<!--\n\n  Generated template for the AsignacionRepartosPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n	\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list>\n\n		<ion-item class="botonesAsignacion">\n\n			<button ion-button (click)="asignacionAutomaticaMensaje()">Asignación automática</button>\n\n		</ion-item>\n\n		<ion-item class="asignacionManual">\n\n			ASIGNACIÓN MANUAL\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list *ngFor="let entrega of listaEntregas">\n\n		<ion-item class="entregaAsignacion">\n\n			<ion-label *ngIf="getRepartidorName(entrega.id) != \'no asignado\'">\n\n				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon> {{ getRepartidorName(entrega.id)}}\n\n			</ion-label>\n\n			<ion-label *ngIf="getRepartidorName(entrega.id) == \'no asignado\'">\n\n				Paquete {{ entrega.id }} <ion-icon large ios="ios-arrow-dropright" md="md-arrow-dropright"></ion-icon>\n\n			</ion-label>\n\n			<ion-select *ngIf="getRepartidorName(entrega.id) == \'no asignado\'" placeholder="no asignado" [(ngModel)]="asignaciones[entrega.id - 1]">\n\n				<ng-container *ngFor="let repartidor of listaUsuarios">\n\n					<ion-option *ngIf="isRepartidor(repartidor)" [value]=repartidor.id>{{ repartidor.nombre }}</ion-option>\n\n				</ng-container>\n\n			</ion-select>\n\n		</ion-item>\n\n		<ion-item class="infoEntrega" text-wrap>\n\n			<p>Dirección: {{entrega.direccion }}</p>\n\n			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   \n\n			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>\n\n		</ion-item>	\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botonesAsignacion">\n\n			<button ion-button (click)="finAsignacionManual()">Finalizar asignación manual</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\asignacion-repartos\asignacion-repartos.html"*/,
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* App */], __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ToastController */]])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _e || Object])
     ], AsignacionRepartosPage);
     return AsignacionRepartosPage;
+    var _a, _b, _c, _d, _e;
 }());
 
 //# sourceMappingURL=asignacion-repartos.js.map
 
 /***/ }),
 
-/***/ 347:
+/***/ 351:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

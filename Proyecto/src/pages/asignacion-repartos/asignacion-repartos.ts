@@ -27,8 +27,8 @@ export class AsignacionRepartosPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
 		//Limpiamos y creamos las entregas en la BD
-		//this.borrarEntregas();
-		//this.crearEntregas();
+		this.borrarEntregas();
+		this.crearEntregas();
 	}
   
 	crearEntregas() {
@@ -89,10 +89,9 @@ export class AsignacionRepartosPage {
 	}
 	
 	finAsignacionManual() {
-		for (var i = 0; i < this.asignaciones.length; i++) {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
 			if (this.asignaciones[i] != null) {
 				if (this.verificarSiTieneEntregas(this.listaUsuarios[this.asignaciones[i] - 1].id) == false){
-				
 					if (this.listaEntregas[i].repartidor == null) {
 						this.listaEntregas[i].enCurso = true;
 					}
@@ -102,7 +101,7 @@ export class AsignacionRepartosPage {
 					}
 					
 				}
-				this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[i] - 1];
+				this.listaEntregas[i].repartidor = this.listaUsuarios[this.asignaciones[this.listaEntregas[i].id - 1]-1];
 				this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
 			}
 		}

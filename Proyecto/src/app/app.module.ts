@@ -11,6 +11,8 @@ import { LoginPage } from '../pages/login/login';
 import { AdministradorPage } from '../pages/administrador/administrador';
 import { RepartidorPage } from '../pages/repartidor/repartidor';
 import { RepartidorDetalladoPage } from '../pages/repartidor-detallado/repartidor-detallado';
+import { RealizarEntregaPage } from '../pages/realizar-entrega/realizar-entrega';
+import { IncidenciaPage } from '../pages/incidencia/incidencia';
 
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -31,7 +33,9 @@ export const fireBaseConfig={
 	LoginPage,
 	AdministradorPage,
 	RepartidorPage,
-	RepartidorDetalladoPage
+	RepartidorDetalladoPage,
+	RealizarEntregaPage,
+	IncidenciaPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,9 @@ export const fireBaseConfig={
 	LoginPage,
 	AdministradorPage,
 	RepartidorPage,
-	RepartidorDetalladoPage
+	RepartidorDetalladoPage,
+	RealizarEntregaPage,
+	IncidenciaPage
   ],
   providers: [
     StatusBar,

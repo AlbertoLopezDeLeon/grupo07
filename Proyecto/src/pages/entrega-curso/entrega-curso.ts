@@ -5,6 +5,8 @@ import { TipoUsuario, Usuario} from '../../models/usuario';
 import { FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
 import { ToastController } from 'ionic-angular';
+import { RealizarEntregaPage } from '../../pages/realizar-entrega/realizar-entrega';
+import { IncidenciaPage } from '../../pages/incidencia/incidencia';
 
 /**
  * Generated class for the EntregaCursoPage page.
@@ -63,11 +65,11 @@ export class EntregaCursoPage {
 		root.popToRoot();
 	}
 	
-	informacionAdicional() {
-		let toast = this.toastCtrl.create({
-		  message: 'Funcionalidad no implementada',
-		  duration: 3000
-		});
-		toast.present();
+	realizarEntrega() {
+		this.navCtrl.push(RealizarEntregaPage,{repartidor:this.repartidor});
+	}
+	
+	incidencia() {
+		this.navCtrl.push(IncidenciaPage,{repartidor:this.repartidor});
 	}
 }

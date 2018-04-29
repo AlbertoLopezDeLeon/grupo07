@@ -1,0 +1,29 @@
+page-realizar-entrega {
+.bg {
+		background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
+	}
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+}
+
+#menuSuperior {
+
+	text-align: left;
+	
+	.logo-imagen {
+	}
+	
+	#tituloMenuSuperior {
+		text-align: center;
+		font-family: Arial, Helvetica, sans-serif;
+	}
+}
+
+.camposEntrega {
+	border-color: rgba(0, 0, 0, 0);
+	background-color: rgba(0, 0, 0, 0);
+	text-align: left;
+	font-size: xx-small;
+}
