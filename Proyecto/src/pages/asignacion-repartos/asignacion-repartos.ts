@@ -27,8 +27,8 @@ export class AsignacionRepartosPage {
 
 	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
 		//Limpiamos y creamos las entregas en la BD
-		this.borrarEntregas();
-		this.crearEntregas();
+		//this.borrarEntregas();
+		//this.crearEntregas();
 	}
   
 	crearEntregas() {

@@ -25788,6 +25788,13 @@ page-lista-repartidores .bg {
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
 }
 
+page-lista-repartidores .marco2 {
+  padding: 5px;
+  background-color: #000000;
+  max-width: 100%;
+  height: auto;
+}
+
 page-login .bg {
   background: -webkit-gradient(linear, left top, left bottom, from(#FECC76), to(#fff));
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
