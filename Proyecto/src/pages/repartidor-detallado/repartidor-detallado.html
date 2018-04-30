@@ -33,7 +33,24 @@
 					</button>
 			</ion-item>
 			  <p></p>
-			  <img style="width:100%" align="center" src="assets/imgs/Mapa.png" width="100" height="300" />
+			  <img style="width:100%" align="center" src="assets/imgs/MapaAdmin.png" width="100" height="300" />
+               <p></p>
+              	<p>Paquetes entregados correctamente:</p>
+                     <ion-list *ngFor="let entrega of listaEntregas">
+                    <ion-item *ngIf="(getRepartidorName(entrega.id) == usuario.nombre) && sinIncidencia(entrega.id)" class="infoEntrega" text-wrap>
+                        <p>Paquete {{entrega.id}}</p>
+                        <p>Dirección: {{entrega.direccion }}</p>
+                        <p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   
+                        <p>Franja Horaria: {{entrega.franjaHoraria}}</p>
+                    </ion-item>
+                    </ion-list>
 		</ion-label>
+        
+
 	</ion-list>
+    
+
+
+
+
 </ion-content>

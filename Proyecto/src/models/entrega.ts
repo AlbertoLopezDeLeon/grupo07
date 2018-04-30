@@ -21,6 +21,7 @@ export class Entrega {
 	incidencia: string;
 	enCurso: boolean;
 	descripcionOtra: string;
+    entregado: boolean;
 	
 	constructor(id: number, nombreReceptor: string, telefonoReceptor: string, direccion: string, numeroBultos: number, franjaHoraria: string, pesoTotal: string, incidencia: string) {
 		this.id = id;
@@ -34,6 +35,7 @@ export class Entrega {
 		this.incidencia = incidencia;
 		this.enCurso = false;
 		this.descripcionOtra = "";
+        this.entregado = false;
 	}
 	
 	public getId(): number {

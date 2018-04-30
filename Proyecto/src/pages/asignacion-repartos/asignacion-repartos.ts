@@ -25,7 +25,7 @@ export class AsignacionRepartosPage {
 	listaUsuarios: any;
 	asignaciones:any[] = [null,null,null,null];
 
-	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
+	constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
 		//Limpiamos y creamos las entregas en la BD
 		//this.borrarEntregas();
 		//this.crearEntregas();
@@ -39,18 +39,18 @@ export class AsignacionRepartosPage {
 		let entrega2:Entrega = new Entrega(2,'Álvaro','633444567','Calle Rio Ebro 5 1D',3,'15:00 - 17:00','8kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega2);
 		
-		let entrega3:Entrega = new Entrega(3,'Ana','687252129','Calle Abedul 24 4A',1,'11:00 - 14:00','2kg',"SinIncidencia");
+		let entrega3:Entrega = new Entrega(3,'Ana','687252129','Calle Abedul 24 4A',1,'11:00 - 13:00','2kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega3);
 		
-		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'11:00 - 13:00','12kg',"SinIncidencia");
+		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'12:00 - 15:00','12kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega4);	
 	}
 	
 	borrarEntregas() {
-		this.dbFirebase.delEntrega(1);
-		this.dbFirebase.delEntrega(2);
-		this.dbFirebase.delEntrega(3);
-		this.dbFirebase.delEntrega(4);
+        for(var i= 0; i< this.listaEntregas.length; i++){
+            this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+        }
+        console.log("habia "+i+"en la base de datos");
 	}
 
 	ionViewDidLoad() {
@@ -120,17 +120,25 @@ export class AsignacionRepartosPage {
 		return false;
 	}
 	
-	sinIncidencia(idEntrega: number): boolean{
+	sinIncidencia(idEntrega: number): boolean{ //no incidencia y no entregado
 		for (var i = 0; i < this.listaEntregas.length; i++) {
 			if (this.listaEntregas[i].id === idEntrega) {
-				return this.listaEntregas[i].incidencia === "SinIncidencia";
+				return (this.listaEntregas[i].incidencia === "SinIncidencia")&&!this.listaEntregas[i].entregado;
+			}
+		}
+	}
+    
+    NoEntregado(idEntrega: number): boolean{
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				return !this.listaEntregas[i].entregado;
 			}
 		}
 	}
 	
 	asignacionAutomaticaMensaje() {
 		let toast = this.toastCtrl.create({
-		  message: 'Funcionalidad no implementada',
+		  message: 'Asignación automática completada con éxito',
 		  duration: 3000
 		});
 		toast.present();
@@ -143,4 +151,47 @@ export class AsignacionRepartosPage {
 		});
 		toast.present();
 	}
+    
+    asignacionAutomaticaAlert(){
+        let alert = this.alertCtrl.create({
+			title: '¿Asignación automática?',
+			message: 'Al confirmar se realizara una asignación automática de los paquetes a repartidores. ¿Desea continuar?',
+			buttons: [
+			  {
+				text: 'Asignar',
+				handler: () => {
+					this.asignacionAutomatica();
+				}
+			  },
+			  {
+				text: 'Reset',
+				role: 'cancel',
+				handler: () => {  
+                    this.borrarEntregas();
+                    this.crearEntregas();
+				}
+			  }
+			]
+		  });
+		  alert.present();
+    }
+    
+    asignacionAutomatica(){
+        this.borrarEntregas();
+		this.crearEntregas();
+        
+        this.listaEntregas[0].repartidor=this.listaUsuarios[2]; //Alberto
+        this.listaEntregas[0].enCurso = true;
+        this.listaEntregas[1].repartidor=this.listaUsuarios[2];
+
+
+        this.listaEntregas[2].repartidor=this.listaUsuarios[3]; //Angelo
+        this.listaEntregas[2].enCurso = true;
+        this.listaEntregas[3].repartidor=this.listaUsuarios[3];
+        
+        for (var i = 0; i < this.listaEntregas.length; i++) {
+            this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+        }
+        this.asignacionAutomaticaMensaje();
+    }
 }

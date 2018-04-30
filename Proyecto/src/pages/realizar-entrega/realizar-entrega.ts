@@ -5,6 +5,8 @@ import { TipoUsuario, Usuario} from '../../models/usuario';
 import { FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
 import { ToastController } from 'ionic-angular';
+import { IncidenciaPage } from '../../pages/incidencia/incidencia';
+import { ListaPaquetesPage } from '../../pages/lista-paquetes/lista-paquetes'
 
 /**
  * Generated class for the RealizarEntregaPage page.
@@ -70,6 +72,7 @@ export class RealizarEntregaPage {
 				text: 'Realizar Entrega',
 				handler: () => {
 					this.borrarEntregaEnCurso();
+                    this.navCtrl.pop();
 				}
 			  },
 			  {
@@ -83,13 +86,18 @@ export class RealizarEntregaPage {
 		  alert.present();
 	}
 
-	borrarEntregaEnCurso() {
+	borrarEntregaEnCurso() { // no la borra, le pone el flag entregado a true
 	var fin = false
 		for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
 			if (this.listaEntregas[i].repartidor != null) {
 				if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
 					if (this.listaEntregas[i].enCurso) {
-						this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+						
+                       
+                        this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+                        this.listaEntregas[i].enCurso=false;
+                        this.listaEntregas[i].entregado=true;
+                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
 						fin = true;
 						let toast = this.toastCtrl.create({
 						  message: 'Entrega realizada con éxito',
@@ -108,7 +116,7 @@ export class RealizarEntregaPage {
 		for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
 			if (this.listaEntregas[i].repartidor != null) {
 				if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
-					if (!this.listaEntregas[i].enCurso) {
+					if (!this.listaEntregas[i].enCurso && !this.listaEntregas[i].entregado && this.listaEntregas[i].incidencia === "SinIncidencia") {
 						this.listaEntregas[i].enCurso = true;
 						fin = true;
 						this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
@@ -116,5 +124,9 @@ export class RealizarEntregaPage {
 				}
 			}
 		}
+	}
+    
+    incidencia() {
+		this.navCtrl.push(IncidenciaPage,{repartidor:this.repartidor});
 	}
 }

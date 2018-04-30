@@ -5,6 +5,7 @@ import { TipoUsuario, Usuario} from '../../models/usuario';
 import { FirebaseDbProvider} from '../../providers/firebase-db/firebase-db';
 import { Entrega} from '../../models/entrega';
 import { ToastController } from 'ionic-angular';
+import { ListaPaquetesPage } from '../../pages/lista-paquetes/lista-paquetes'
 
 /**
  * Generated class for the IncidenciaPage page.
@@ -62,6 +63,7 @@ export class IncidenciaPage {
 				text: 'Confirmar',
 				handler: () => {
 					this.quitarEntregaEnCurso();
+                    this.navCtrl.pop();
 				}
 			  },
 			  {
@@ -115,7 +117,7 @@ export class IncidenciaPage {
   ponerEnCursoSiguientePaquete() {
 		var fin = false;
 		for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
-			if (this.listaEntregas[i].repartidor != null && this.listaEntregas[i].incidencia === "SinIncidencia") {
+			if (this.listaEntregas[i].repartidor != null && this.listaEntregas[i].incidencia === "SinIncidencia" && !this.listaEntregas[i].entregado) {
 				if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
 					if (!this.listaEntregas[i].enCurso) {
 						this.listaEntregas[i].enCurso = true;

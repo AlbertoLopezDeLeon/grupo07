@@ -21,6 +21,11 @@ import { ToastController } from 'ionic-angular';
 export class RepartidorDetalladoPage {
 	listaUsuarios: any;
 	id='';
+    
+    listaEntregas: any;
+
+	entregaEnCurso: any;
+    
   constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, 
 				public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
 	this.id=navParams.get('id');
@@ -32,6 +37,7 @@ export class RepartidorDetalladoPage {
 	
   ionViewDidEnter(){
 		this.dbFirebase.getUsuarios().subscribe(listaUsuarios=>{this.listaUsuarios=listaUsuarios;});
+        this.dbFirebase.getEntregas().subscribe(listaEntregas=>{this.listaEntregas=listaEntregas;});
   }
 
   goToLoginPage() {
@@ -45,5 +51,26 @@ export class RepartidorDetalladoPage {
 		  duration: 3000
 		});
 		toast.present();
+	}
+    
+    getRepartidorName(idEntrega: number): string {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				if (this.listaEntregas[i].repartidor == null) {
+					return "no asignado";
+				}
+				else {
+					return this.listaEntregas[i].repartidor.nombre;
+				}
+			}
+		}
+	}
+    
+    	sinIncidencia(idEntrega: number): boolean{ //no incidencia y  entregado
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				return (this.listaEntregas[i].incidencia === "SinIncidencia")&&this.listaEntregas[i].entregado;
+			}
+		}
 	}
 }

@@ -25746,6 +25746,11 @@ page-entrega-curso .bg {
   font-size: xx-small;
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
 page-incidencia .bg {
   background: -webkit-gradient(linear, left top, left bottom, from(#FECC76), to(#fff));
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);
@@ -25873,6 +25878,13 @@ page-repartidor-detallado .marco2 {
 page-repartidor-detallado img {
   max-width: 100%;
   height: auto;
+}
+
+.infoEntrega {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: left;
+  font-size: xx-small;
 }
 
 page-ver-incidencias .bg {

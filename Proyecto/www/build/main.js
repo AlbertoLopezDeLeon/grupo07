@@ -4,6 +4,148 @@ webpackJsonp([11],{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IncidenciaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__ = __webpack_require__(33);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the IncidenciaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var IncidenciaPage = /** @class */ (function () {
+    function IncidenciaPage(navCtrl, navParams, app, dbFirebase, toastCtrl, alertCtrl) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.app = app;
+        this.dbFirebase = dbFirebase;
+        this.toastCtrl = toastCtrl;
+        this.alertCtrl = alertCtrl;
+        this.repartidor = navParams.get('repartidor');
+        this.descripcionOtra = "";
+    }
+    IncidenciaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad IncidenciaPage');
+    };
+    IncidenciaPage.prototype.ionViewDidEnter = function () {
+        var _this = this;
+        this.dbFirebase.getEntregas().subscribe(function (listaEntregas) { _this.listaEntregas = listaEntregas; });
+    };
+    IncidenciaPage.prototype.getRepartidorName = function (idEntrega) {
+        for (var i = 0; i < this.listaEntregas.length; i++) {
+            if (this.listaEntregas[i].id === idEntrega) {
+                if (this.listaEntregas[i].repartidor == null) {
+                    return "no asignado";
+                }
+                else {
+                    return this.listaEntregas[i].repartidor.nombre;
+                }
+            }
+        }
+    };
+    IncidenciaPage.prototype.confirmarIncidencia = function () {
+        var _this = this;
+        var alert = this.alertCtrl.create({
+            title: 'Confirmar incidencia',
+            message: 'Al confirmar la incidencia, pasaremos al siguiente paquete en curso. ¿Desea continuar?',
+            buttons: [
+                {
+                    text: 'Confirmar',
+                    handler: function () {
+                        _this.quitarEntregaEnCurso();
+                        _this.navCtrl.pop();
+                    }
+                },
+                {
+                    text: 'Volver',
+                    role: 'cancel',
+                    handler: function () {
+                    }
+                }
+            ]
+        });
+        alert.present();
+    };
+    IncidenciaPage.prototype.enCurso = function (idEntrega) {
+        for (var i = 0; i < this.listaEntregas.length; i++) {
+            if (this.listaEntregas[i].id === idEntrega) {
+                return this.listaEntregas[i].enCurso;
+            }
+        }
+    };
+    IncidenciaPage.prototype.goToLoginPage = function () {
+        var root = this.app.getRootNav();
+        root.popToRoot();
+    };
+    IncidenciaPage.prototype.quitarEntregaEnCurso = function () {
+        var fin = false;
+        for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
+            if (this.listaEntregas[i].repartidor != null) {
+                if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
+                    if (this.listaEntregas[i].enCurso) {
+                        this.listaEntregas[i].enCurso = false;
+                        this.listaEntregas[i].incidencia = this.tipoIncidencia;
+                        this.listaEntregas[i].descripcionOtra = this.descripcionOtra;
+                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+                        //this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+                        fin = true;
+                        var toast = this.toastCtrl.create({
+                            message: 'Incidencia reportada',
+                            duration: 3000
+                        });
+                        toast.present();
+                        this.ponerEnCursoSiguientePaquete();
+                    }
+                }
+            }
+        }
+    };
+    IncidenciaPage.prototype.ponerEnCursoSiguientePaquete = function () {
+        var fin = false;
+        for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
+            if (this.listaEntregas[i].repartidor != null && this.listaEntregas[i].incidencia === "SinIncidencia" && !this.listaEntregas[i].entregado) {
+                if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
+                    if (!this.listaEntregas[i].enCurso) {
+                        this.listaEntregas[i].enCurso = true;
+                        fin = true;
+                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+                    }
+                }
+            }
+        }
+    };
+    IncidenciaPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-incidencia',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\incidencia\incidencia.html"*/'<!--\n\n  Generated template for the IncidenciaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="bg">\n\n	<ion-list *ngFor="let entrega of listaEntregas" class="camposIncidencia">\n\n		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)"  class="camposIncidencia" text-wrap>\n\n			<p class="titulo">Incidencias</p>\n\n			<p> </p>\n\n			<p>Paquete {{entrega.id}}</p>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list radio-group [(ngModel)]="tipoIncidencia" class="camposIncidencia">\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Dirección erronea</ion-label>\n\n			<ion-radio value="Dirección erronea"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Cliente ausente</ion-label>\n\n			<ion-radio value="Cliente ausente"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Paquete en malas condiciones</ion-label>\n\n			<ion-radio value="Paquete en malas condiciones"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia"> \n\n			<ion-label>Entrega rehusada</ion-label>\n\n			<ion-radio value="Entrega rehusada"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Otra incidencia</ion-label>\n\n			<ion-radio value="Otra indidencia"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-textarea [(ngModel)]="descripcionOtra"></ion-textarea>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botones">\n\n			<button ion-button (click)="confirmarIncidencia()">Reportar incidencia</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\incidencia\incidencia.html"*/,
+        }),
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
+    ], IncidenciaPage);
+    return IncidenciaPage;
+    var _a, _b, _c, _d, _e, _f;
+}());
+
+//# sourceMappingURL=incidencia.js.map
+
+/***/ }),
+
+/***/ 107:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AdministradorPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
@@ -33,7 +175,7 @@ var AdministradorPage = /** @class */ (function () {
     }
     AdministradorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-administrador',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\administrador\administrador.html"*/'<ion-tabs color="primary" tabsPlacement="top" >\n\n    <ion-tab [root]="asignacionRepartosRoot" tabTitle="Asignar"></ion-tab>\n\n    <ion-tab [root]="listaRepartidoresRoot" tabTitle="Lista repartidores"></ion-tab>\n\n    <ion-tab [root]="verIncidenciasRoot" tabTitle="Incidencias"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\administrador\administrador.html"*/
+            selector: 'page-administrador',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\administrador\administrador.html"*/'<ion-tabs color="primary" tabsPlacement="top" >\n\n    <ion-tab [root]="asignacionRepartosRoot" tabTitle="Asignar"></ion-tab>\n\n    <ion-tab [root]="listaRepartidoresRoot" tabTitle="Lista repartidores"></ion-tab>\n\n    <ion-tab [root]="verIncidenciasRoot" tabTitle="Incidencias"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\administrador\administrador.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]])
     ], AdministradorPage);
@@ -44,15 +186,15 @@ var AdministradorPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 107:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__administrador_administrador__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__repartidor_repartidor__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__administrador_administrador__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__repartidor_repartidor__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_firebase_db_firebase_db__ = __webpack_require__(33);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__models_usuario__ = __webpack_require__(226);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -148,7 +290,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar hide-tabs>\n\n    <ion-title></ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<div id="logo">\n\n		<img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="120" height="120"/>\n\n		<h3 id="titulo-aplicacion">Routing Deal</h3>\n\n	</div>\n\n	\n\n	<form (ngSubmit)="login()">\n\n	<ion-list id="cuadrosTexto" >\n\n		<ion-item style="background:#FEE7C0">\n\n			<ion-label color="black"><b>Usuario:</b></ion-label>\n\n			<ion-input type="text" [(ngModel)]="usuario" name="usuario"></ion-input>\n\n		</ion-item>\n\n		<ion-item style="background:#FEEDD0">\n\n			<ion-label color="black"><b>Contraseña:</b></ion-label>\n\n			<ion-input type="password" [(ngModel)]="contrasenya" name="contrasenya"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<div id="botonAcceder">\n\n		<button ion-button type="submit" style="background:#FECC76">Acceder</button>\n\n	</div>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\login\login.html"*/'<!--\n\n  Generated template for the LoginPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar hide-tabs>\n\n    <ion-title></ion-title>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<div id="logo">\n\n		<img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="120" height="120"/>\n\n		<h3 id="titulo-aplicacion">Routing Deal</h3>\n\n	</div>\n\n	\n\n	<form (ngSubmit)="login()">\n\n	<ion-list id="cuadrosTexto" >\n\n		<ion-item style="background:#FEE7C0">\n\n			<ion-label color="black"><b>Usuario:</b></ion-label>\n\n			<ion-input type="text" [(ngModel)]="usuario" name="usuario"></ion-input>\n\n		</ion-item>\n\n		<ion-item style="background:#FEEDD0">\n\n			<ion-label color="black"><b>Contraseña:</b></ion-label>\n\n			<ion-input type="password" [(ngModel)]="contrasenya" name="contrasenya"></ion-input>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<div id="botonAcceder">\n\n		<button ion-button type="submit" style="background:#FECC76">Acceder</button>\n\n	</div>\n\n	</form>\n\n</ion-content>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_4__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
     ], LoginPage);
@@ -159,7 +301,7 @@ var LoginPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 108:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -193,7 +335,7 @@ var RepartidorPage = /** @class */ (function () {
     }
     RepartidorPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-repartidor',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/'<ion-tabs color="primary" tabsPlacement="top">\n\n    <ion-tab [root]="listaPaquetesRoot" [rootParams]="repartidorParams" tabTitle="Lista paquetes"></ion-tab>\n\n    <ion-tab [root]="entregaCursoRoot" [rootParams]="repartidorParams" tabTitle="Entrega curso"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/
+            selector: 'page-repartidor',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/'<ion-tabs color="primary" tabsPlacement="top">\n\n    <ion-tab [root]="listaPaquetesRoot" [rootParams]="repartidorParams" tabTitle="Lista paquetes"></ion-tab>\n\n    <ion-tab [root]="entregaCursoRoot" [rootParams]="repartidorParams" tabTitle="Entrega curso"></ion-tab>\n\n</ion-tabs>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\repartidor\repartidor.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
     ], RepartidorPage);
@@ -204,7 +346,7 @@ var RepartidorPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 120:
+/***/ 121:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -217,11 +359,11 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 120;
+webpackEmptyAsyncContext.id = 121;
 
 /***/ }),
 
-/***/ 162:
+/***/ 163:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -281,12 +423,12 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 162;
+webpackAsyncContext.id = 163;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 223:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -294,6 +436,7 @@ module.exports = webpackAsyncContext;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_incidencia_incidencia__ = __webpack_require__(106);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -303,6 +446,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -363,6 +507,7 @@ var RealizarEntregaPage = /** @class */ (function () {
                     text: 'Realizar Entrega',
                     handler: function () {
                         _this.borrarEntregaEnCurso();
+                        _this.navCtrl.pop();
                     }
                 },
                 {
@@ -382,6 +527,9 @@ var RealizarEntregaPage = /** @class */ (function () {
                 if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
                     if (this.listaEntregas[i].enCurso) {
                         this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+                        this.listaEntregas[i].enCurso = false;
+                        this.listaEntregas[i].entregado = true;
+                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
                         fin = true;
                         var toast = this.toastCtrl.create({
                             message: 'Entrega realizada con éxito',
@@ -399,7 +547,7 @@ var RealizarEntregaPage = /** @class */ (function () {
         for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
             if (this.listaEntregas[i].repartidor != null) {
                 if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
-                    if (!this.listaEntregas[i].enCurso) {
+                    if (!this.listaEntregas[i].enCurso && !this.listaEntregas[i].entregado && this.listaEntregas[i].incidencia === "SinIncidencia") {
                         this.listaEntregas[i].enCurso = true;
                         fin = true;
                         this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
@@ -407,158 +555,21 @@ var RealizarEntregaPage = /** @class */ (function () {
                 }
             }
         }
+    };
+    RealizarEntregaPage.prototype.incidencia = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__pages_incidencia_incidencia__["a" /* IncidenciaPage */], { repartidor: this.repartidor });
     };
     RealizarEntregaPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-realizar-entrega',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\realizar-entrega\realizar-entrega.html"*/'<!--\n\n  Generated template for the RealizarEntregaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let entrega of listaEntregas">\n\n		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)" class="infoEntrega" text-wrap>\n\n			<p>Paquete {{entrega.id}}</p>\n\n			<p>Dirección: {{entrega.direccion }}</p>\n\n			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   \n\n			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list class="camposEntrega">\n\n		<ion-item class="camposEntrega">\n\n			<ion-label stacked>Nombre del receptor</ion-label>\n\n			<ion-input></ion-input>\n\n		</ion-item>\n\n		<ion-item class="camposEntrega">\n\n			<ion-label stacked>Firma del receptor</ion-label>\n\n			<ion-textarea></ion-textarea>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botones">\n\n			<button ion-button (click)="confirmarEntrega()">Confirmar entrega</button>\n\n			<button ion-button (click)="incidencia()">Incidencia</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\realizar-entrega\realizar-entrega.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */], __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
-    ], RealizarEntregaPage);
-    return RealizarEntregaPage;
-}());
-
-//# sourceMappingURL=realizar-entrega.js.map
-
-/***/ }),
-
-/***/ 224:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IncidenciaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__ = __webpack_require__(33);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/**
- * Generated class for the IncidenciaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var IncidenciaPage = /** @class */ (function () {
-    function IncidenciaPage(navCtrl, navParams, app, dbFirebase, toastCtrl, alertCtrl) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.app = app;
-        this.dbFirebase = dbFirebase;
-        this.toastCtrl = toastCtrl;
-        this.alertCtrl = alertCtrl;
-        this.repartidor = navParams.get('repartidor');
-        this.descripcionOtra = "";
-    }
-    IncidenciaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad IncidenciaPage');
-    };
-    IncidenciaPage.prototype.ionViewDidEnter = function () {
-        var _this = this;
-        this.dbFirebase.getEntregas().subscribe(function (listaEntregas) { _this.listaEntregas = listaEntregas; });
-    };
-    IncidenciaPage.prototype.getRepartidorName = function (idEntrega) {
-        for (var i = 0; i < this.listaEntregas.length; i++) {
-            if (this.listaEntregas[i].id === idEntrega) {
-                if (this.listaEntregas[i].repartidor == null) {
-                    return "no asignado";
-                }
-                else {
-                    return this.listaEntregas[i].repartidor.nombre;
-                }
-            }
-        }
-    };
-    IncidenciaPage.prototype.confirmarIncidencia = function () {
-        var _this = this;
-        var alert = this.alertCtrl.create({
-            title: 'Confirmar incidencia',
-            message: 'Al confirmar la incidencia, pasaremos al siguiente paquete en curso. ¿Desea continuar?',
-            buttons: [
-                {
-                    text: 'Confirmar',
-                    handler: function () {
-                        _this.quitarEntregaEnCurso();
-                    }
-                },
-                {
-                    text: 'Volver',
-                    role: 'cancel',
-                    handler: function () {
-                    }
-                }
-            ]
-        });
-        alert.present();
-    };
-    IncidenciaPage.prototype.enCurso = function (idEntrega) {
-        for (var i = 0; i < this.listaEntregas.length; i++) {
-            if (this.listaEntregas[i].id === idEntrega) {
-                return this.listaEntregas[i].enCurso;
-            }
-        }
-    };
-    IncidenciaPage.prototype.goToLoginPage = function () {
-        var root = this.app.getRootNav();
-        root.popToRoot();
-    };
-    IncidenciaPage.prototype.quitarEntregaEnCurso = function () {
-        var fin = false;
-        for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
-            if (this.listaEntregas[i].repartidor != null) {
-                if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
-                    if (this.listaEntregas[i].enCurso) {
-                        this.listaEntregas[i].enCurso = false;
-                        this.listaEntregas[i].incidencia = this.tipoIncidencia;
-                        this.listaEntregas[i].descripcionOtra = this.descripcionOtra;
-                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
-                        //this.dbFirebase.delEntrega(this.listaEntregas[i].id);
-                        fin = true;
-                        var toast = this.toastCtrl.create({
-                            message: 'Incidencia reportada',
-                            duration: 3000
-                        });
-                        toast.present();
-                        this.ponerEnCursoSiguientePaquete();
-                    }
-                }
-            }
-        }
-    };
-    IncidenciaPage.prototype.ponerEnCursoSiguientePaquete = function () {
-        var fin = false;
-        for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
-            if (this.listaEntregas[i].repartidor != null && this.listaEntregas[i].incidencia === "SinIncidencia") {
-                if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
-                    if (!this.listaEntregas[i].enCurso) {
-                        this.listaEntregas[i].enCurso = true;
-                        fin = true;
-                        this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
-                    }
-                }
-            }
-        }
-    };
-    IncidenciaPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-incidencia',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\incidencia\incidencia.html"*/'<!--\n\n  Generated template for the IncidenciaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class="bg">\n\n	<ion-list *ngFor="let entrega of listaEntregas" class="camposIncidencia">\n\n		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)"  class="camposIncidencia" text-wrap>\n\n			<p class="titulo">Incidencias</p>\n\n			<p> </p>\n\n			<p>Paquete {{entrega.id}}</p>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list radio-group [(ngModel)]="tipoIncidencia" class="camposIncidencia">\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Dirección erronea</ion-label>\n\n			<ion-radio value="Dirección erronea"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Cliente ausente</ion-label>\n\n			<ion-radio value="Cliente ausente"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Paquete en malas condiciones</ion-label>\n\n			<ion-radio value="Paquete en malas condiciones"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia"> \n\n			<ion-label>Entrega rehusada</ion-label>\n\n			<ion-radio value="Entrega rehusada"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-label>Otra incidencia</ion-label>\n\n			<ion-radio value="Otra indidencia"></ion-radio>\n\n		</ion-item>\n\n		<ion-item class="camposIncidencia">\n\n			<ion-textarea [(ngModel)]="descripcionOtra"></ion-textarea>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botones">\n\n			<button ion-button (click)="confirmarIncidencia()">Reportar incidencia</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\incidencia\incidencia.html"*/,
+            selector: 'page-realizar-entrega',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\realizar-entrega\realizar-entrega.html"*/'<!--\n\n  Generated template for the RealizarEntregaPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n</ion-header>\n\n\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let entrega of listaEntregas">\n\n		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)" class="infoEntrega" text-wrap>\n\n			<p>Paquete {{entrega.id}}</p>\n\n			<p>Dirección: {{entrega.direccion }}</p>\n\n			<p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   \n\n			<p>Franja Horaria: {{entrega.franjaHoraria}}</p>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list class="camposEntrega">\n\n		<ion-item class="camposEntrega">\n\n			<ion-label stacked>Nombre del receptor</ion-label>\n\n			<ion-input></ion-input>\n\n		</ion-item>\n\n		<ion-item class="camposEntrega">\n\n			<ion-label stacked>Firma del receptor</ion-label>\n\n			<ion-textarea></ion-textarea>\n\n		</ion-item>\n\n	</ion-list>\n\n	\n\n	<ion-list>\n\n		<ion-item class="botones">\n\n			<button ion-button (click)="confirmarEntrega()">Confirmar entrega</button>\n\n			<button ion-button (click)="incidencia()">Incidencia</button>\n\n		</ion-item>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\realizar-entrega\realizar-entrega.html"*/,
         }),
         __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
-    ], IncidenciaPage);
-    return IncidenciaPage;
+    ], RealizarEntregaPage);
+    return RealizarEntregaPage;
     var _a, _b, _c, _d, _e, _f;
 }());
 
-//# sourceMappingURL=incidencia.js.map
+//# sourceMappingURL=realizar-entrega.js.map
 
 /***/ }),
 
@@ -605,6 +616,7 @@ var RepartidorDetalladoPage = /** @class */ (function () {
     RepartidorDetalladoPage.prototype.ionViewDidEnter = function () {
         var _this = this;
         this.dbFirebase.getUsuarios().subscribe(function (listaUsuarios) { _this.listaUsuarios = listaUsuarios; });
+        this.dbFirebase.getEntregas().subscribe(function (listaEntregas) { _this.listaEntregas = listaEntregas; });
     };
     RepartidorDetalladoPage.prototype.goToLoginPage = function () {
         var root = this.app.getRootNav();
@@ -617,9 +629,28 @@ var RepartidorDetalladoPage = /** @class */ (function () {
         });
         toast.present();
     };
+    RepartidorDetalladoPage.prototype.getRepartidorName = function (idEntrega) {
+        for (var i = 0; i < this.listaEntregas.length; i++) {
+            if (this.listaEntregas[i].id === idEntrega) {
+                if (this.listaEntregas[i].repartidor == null) {
+                    return "no asignado";
+                }
+                else {
+                    return this.listaEntregas[i].repartidor.nombre;
+                }
+            }
+        }
+    };
+    RepartidorDetalladoPage.prototype.sinIncidencia = function (idEntrega) {
+        for (var i = 0; i < this.listaEntregas.length; i++) {
+            if (this.listaEntregas[i].id === idEntrega) {
+                return (this.listaEntregas[i].incidencia === "SinIncidencia") && this.listaEntregas[i].entregado;
+            }
+        }
+    };
     RepartidorDetalladoPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-repartidor-detallado',template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/'<!--\n\n  Generated template for the RepartidorDetalladoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n  \n\n</ion-header>\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let usuario of listaUsuarios">\n\n		<ion-label *ngIf="usuario.id == id">\n\n			<ion-item class="infoEntrega" text-wrap>\n\n					<img class="marco2" src="assets/imgs/{{usuario.ruta_imagen}}" border="4" align="left" width="70" height="70"/>\n\n 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Nombre: {{usuario.nombre}}</p>\n\n					<p>&nbsp;&nbsp;&nbsp;&nbsp;Tlf: {{usuario.telefono}}</p>\n\n					<p>&nbsp;&nbsp;&nbsp;&nbsp;Vehiculo: {{usuario.vehiculo}}</p>\n\n					<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">\n\n						<ion-icon name="information-circle"></ion-icon>\n\n					</button>\n\n			</ion-item>\n\n			  <p></p>\n\n			  <img style="width:100%" align="center" src="assets/imgs/Mapa.png" width="100" height="300" />\n\n		</ion-label>\n\n	</ion-list>\n\n</ion-content>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/,
+            selector: 'page-repartidor-detallado',template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/'<!--\n\n  Generated template for the RepartidorDetalladoPage page.\n\n\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n\n  Ionic pages and navigation.\n\n-->\n\n<ion-header>\n\n\n\n  <ion-navbar>\n\n		<div id="menuSuperior">\n\n		<table style="width:100%">\n\n		<tr>\n\n		<td style="width:25%"><img class="logo-imagen" src="assets/imgs/LogoApp3.png" width="80" height="80" (click)="goToLoginPage()"/></td>\n\n		<td style="width:50%"><h3 class="tituloMenuSuperior">Routing Deal</h3></td>\n\n		</tr>\n\n		</table>\n\n		</div>\n\n  </ion-navbar>\n\n\n\n  \n\n</ion-header>\n\n\n\n<ion-content padding class ="bg">\n\n	<ion-list *ngFor="let usuario of listaUsuarios">\n\n		<ion-label *ngIf="usuario.id == id">\n\n			<ion-item class="infoEntrega" text-wrap>\n\n					<img class="marco2" src="assets/imgs/{{usuario.ruta_imagen}}" border="4" align="left" width="70" height="70"/>\n\n 					<p>&nbsp;&nbsp;&nbsp;&nbsp;Nombre: {{usuario.nombre}}</p>\n\n					<p>&nbsp;&nbsp;&nbsp;&nbsp;Tlf: {{usuario.telefono}}</p>\n\n					<p>&nbsp;&nbsp;&nbsp;&nbsp;Vehiculo: {{usuario.vehiculo}}</p>\n\n					<button ion-button round outline color="dark" item-end icon-left (click)="asignacionAutomaticaMensaje()">\n\n						<ion-icon name="information-circle"></ion-icon>\n\n					</button>\n\n			</ion-item>\n\n			  <p></p>\n\n			  <img style="width:100%" align="center" src="assets/imgs/MapaAdmin.png" width="100" height="300" />\n\n               <p></p>\n\n              	<p>Paquetes entregados correctamente:</p>\n\n                     <ion-list *ngFor="let entrega of listaEntregas">\n\n                    <ion-item *ngIf="(getRepartidorName(entrega.id) == usuario.nombre) && sinIncidencia(entrega.id)" class="infoEntrega" text-wrap>\n\n                        <p>Paquete {{entrega.id}}</p>\n\n                        <p>Dirección: {{entrega.direccion }}</p>\n\n                        <p>Receptor: {{entrega.nombreReceptor}}    Nº de Bultos: {{ entrega.numeroBultos }}</p>   \n\n                        <p>Franja Horaria: {{entrega.franjaHoraria}}</p>\n\n                    </ion-item>\n\n                    </ion-list>\n\n		</ion-label>\n\n        \n\n\n\n	</ion-list>\n\n    \n\n\n\n\n\n\n\n\n\n</ion-content>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\pages\repartidor-detallado\repartidor-detallado.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* App */],
             __WEBPACK_IMPORTED_MODULE_2__providers_firebase_db_firebase_db__["a" /* FirebaseDbProvider */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ToastController */]])
@@ -709,16 +740,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(330);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2__ = __webpack_require__(52);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_angularfire2_database__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_firebase_db_firebase_db__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_administrador_administrador__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_repartidor_repartidor__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_administrador_administrador__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_repartidor_repartidor__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_repartidor_detallado_repartidor_detallado__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_realizar_entrega_realizar_entrega__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_incidencia_incidencia__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_realizar_entrega_realizar_entrega__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_incidencia_incidencia__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__ionic_native_status_bar__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__ionic_native_splash_screen__ = __webpack_require__(223);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -814,7 +845,7 @@ var AppModule = /** @class */ (function () {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FirebaseDbProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(163);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(164);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -882,9 +913,9 @@ var FirebaseDbProvider = /** @class */ (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_login_login__ = __webpack_require__(108);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -910,7 +941,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"C:\Users\Cristian\Documents\GitHub\grupo07\Proyecto\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n\n'/*ion-inline-end:"d:\ESTUDIO\tercero 2do cuatrimestre\diseño sistemas interactivos\github\grupo07\Proyecto\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
