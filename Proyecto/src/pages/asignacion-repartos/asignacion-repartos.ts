@@ -36,13 +36,13 @@ export class AsignacionRepartosPage {
 		let entrega1:Entrega = new Entrega(1,"Joan","687218832","Calle Mayor 15 2D",1,"12:00 - 14:00","5kg","SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega1);
 		
-		let entrega2:Entrega = new Entrega(2,'Álvaro','633444567','Calle Rio Ebro 5 1D',3,'15:00 - 17:00','8kg',"DireccionErronea");
+		let entrega2:Entrega = new Entrega(2,'Álvaro','633444567','Calle Rio Ebro 5 1D',3,'15:00 - 17:00','8kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega2);
 		
 		let entrega3:Entrega = new Entrega(3,'Ana','687252129','Calle Abedul 24 4A',1,'11:00 - 14:00','2kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega3);
 		
-		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'11:00 - 13:00','12kg',"PaqueteMalasCondiciones");
+		let entrega4:Entrega = new Entrega(4,'Bart','669444012','Calle Falsa 123',2,'11:00 - 13:00','12kg',"SinIncidencia");
 		this.dbFirebase.guardaEntrega(entrega4);	
 	}
 	
@@ -118,6 +118,14 @@ export class AsignacionRepartosPage {
 			}
 		}
 		return false;
+	}
+	
+	sinIncidencia(idEntrega: number): boolean{
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				return this.listaEntregas[i].incidencia === "SinIncidencia";
+			}
+		}
 	}
 	
 	asignacionAutomaticaMensaje() {

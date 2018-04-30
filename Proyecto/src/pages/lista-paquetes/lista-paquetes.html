@@ -22,7 +22,7 @@
 
 <ion-content padding class ="bg">
 	<ion-list *ngFor="let entrega of listaEntregas">
-		<ion-label *ngIf="getRepartidorName(entrega.id) == repartidor">
+		<ion-label *ngIf="getRepartidorName(entrega.id) == repartidor && entrega.incidencia == 'SinIncidencia'">
 			<ion-item class="infoEntrega" text-wrap>
 					<p>Paquete {{entrega.id}}</p>
 					<p>Dirección: {{entrega.direccion }}</p>

@@ -25765,6 +25765,20 @@ page-incidencia img {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.camposIncidencia {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: left;
+  font-size: small;
+}
+
+.titulo {
+  border-color: transparent;
+  background-color: transparent;
+  text-align: center;
+  font-size: medium;
+}
+
 page-lista-paquetes .bg {
   background: -webkit-gradient(linear, left top, left bottom, from(#FECC76), to(#fff));
   background: linear-gradient(to bottom, #FECC76 0%, #fff 100%);

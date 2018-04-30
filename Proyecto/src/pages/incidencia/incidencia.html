@@ -20,6 +20,44 @@
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content padding class="bg">
+	<ion-list *ngFor="let entrega of listaEntregas" class="camposIncidencia">
+		<ion-item *ngIf="getRepartidorName(entrega.id) == repartidor && enCurso(entrega.id)"  class="camposIncidencia" text-wrap>
+			<p class="titulo">Incidencias</p>
+			<p> </p>
+			<p>Paquete {{entrega.id}}</p>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list radio-group [(ngModel)]="tipoIncidencia" class="camposIncidencia">
+		<ion-item class="camposIncidencia">
+			<ion-label>Dirección erronea</ion-label>
+			<ion-radio value="Dirección erronea"></ion-radio>
+		</ion-item>
+		<ion-item class="camposIncidencia">
+			<ion-label>Cliente ausente</ion-label>
+			<ion-radio value="Cliente ausente"></ion-radio>
+		</ion-item>
+		<ion-item class="camposIncidencia">
+			<ion-label>Paquete en malas condiciones</ion-label>
+			<ion-radio value="Paquete en malas condiciones"></ion-radio>
+		</ion-item>
+		<ion-item class="camposIncidencia"> 
+			<ion-label>Entrega rehusada</ion-label>
+			<ion-radio value="Entrega rehusada"></ion-radio>
+		</ion-item>
+		<ion-item class="camposIncidencia">
+			<ion-label>Otra incidencia</ion-label>
+			<ion-radio value="Otra indidencia"></ion-radio>
+		</ion-item>
+		<ion-item class="camposIncidencia">
+			<ion-textarea [(ngModel)]="descripcionOtra"></ion-textarea>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list>
+		<ion-item class="botones">
+			<button ion-button (click)="confirmarIncidencia()">Reportar incidencia</button>
+		</ion-item>
+	</ion-list>
 </ion-content>

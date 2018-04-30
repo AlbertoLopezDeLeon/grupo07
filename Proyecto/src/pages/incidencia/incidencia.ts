@@ -20,16 +20,110 @@ import { ToastController } from 'ionic-angular';
 })
 export class IncidenciaPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController) {
+	listaEntregas:any;
+	repartidor:string;
+	
+	tipoIncidencia:string;
+	descripcionOtra:string;
+	
+	
+  constructor(public navCtrl: NavController, public navParams: NavParams, public app: App, public dbFirebase:FirebaseDbProvider, public toastCtrl: ToastController, public alertCtrl: AlertController) {
+	this.repartidor = navParams.get('repartidor');
+	this.descripcionOtra="";
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IncidenciaPage');
   }
   
+  ionViewDidEnter(){
+		this.dbFirebase.getEntregas().subscribe(listaEntregas=>{this.listaEntregas=listaEntregas;});
+	}
+	
+	getRepartidorName(idEntrega: number): string {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				if (this.listaEntregas[i].repartidor == null) {
+					return "no asignado";
+				}
+				else {
+					return this.listaEntregas[i].repartidor.nombre;
+				}
+			}
+		}
+	}
+	
+	confirmarIncidencia() {
+		  let alert = this.alertCtrl.create({
+			title: 'Confirmar incidencia',
+			message: 'Al confirmar la incidencia, pasaremos al siguiente paquete en curso. ¿Desea continuar?',
+			buttons: [
+			  {
+				text: 'Confirmar',
+				handler: () => {
+					this.quitarEntregaEnCurso();
+				}
+			  },
+			  {
+				text: 'Volver',
+				role: 'cancel',
+				handler: () => {  
+				}
+			  }
+			]
+		  });
+		  alert.present();
+	}
+	
+	enCurso(idEntrega: number): boolean {
+		for (var i = 0; i < this.listaEntregas.length; i++) {
+			if (this.listaEntregas[i].id === idEntrega) {
+				return this.listaEntregas[i].enCurso;
+			}
+		}
+	}
+  
   goToLoginPage() {
 	const root = this.app.getRootNav();
 	root.popToRoot();
   }
+  
+  quitarEntregaEnCurso() {
+	var fin = false
+		for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
+			if (this.listaEntregas[i].repartidor != null) {
+				if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
+					if (this.listaEntregas[i].enCurso) {
+						this.listaEntregas[i].enCurso = false;
+						this.listaEntregas[i].incidencia = this.tipoIncidencia;
+						this.listaEntregas[i].descripcionOtra = this.descripcionOtra;
+						this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+						//this.dbFirebase.delEntrega(this.listaEntregas[i].id);
+						fin = true;
+						let toast = this.toastCtrl.create({
+						  message: 'Incidencia reportada',
+						  duration: 3000
+						});
+						toast.present();
+						this.ponerEnCursoSiguientePaquete();
+					}
+				}
+			}
+		}
+	}
 
+  ponerEnCursoSiguientePaquete() {
+		var fin = false;
+		for (var i = 0; i < this.listaEntregas.length && !fin; i++) {
+			if (this.listaEntregas[i].repartidor != null && this.listaEntregas[i].incidencia === "SinIncidencia") {
+				if (this.listaEntregas[i].repartidor.nombre === this.repartidor) {
+					if (!this.listaEntregas[i].enCurso) {
+						this.listaEntregas[i].enCurso = true;
+						fin = true;
+						this.dbFirebase.guardaEntrega(this.listaEntregas[i]);
+					}
+				}
+			}
+		}
+	}
 }
