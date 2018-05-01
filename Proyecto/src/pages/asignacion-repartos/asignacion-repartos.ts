@@ -47,10 +47,12 @@ export class AsignacionRepartosPage {
 	}
 	
 	borrarEntregas() {
+		if (this.listaEntregas != null) {
         for(var i= 0; i< this.listaEntregas.length; i++){
             this.dbFirebase.delEntrega(this.listaEntregas[i].id);
         }
         console.log("habia "+i+"en la base de datos");
+		}
 	}
 
 	ionViewDidLoad() {
